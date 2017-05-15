@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          metadata-complete="true">
-    <display-name>j2e-pac4j-demo</display-name>
+    <display-name>j2e-pac4j-cdi-demo</display-name>
 
     <absolute-ordering/>
 
@@ -11,13 +11,16 @@
         <listener-class>org.pac4j.demo.j2e.MySessionListener</listener-class>
     </listener>
 
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:application-context.xml</param-value>
-    </context-param>
+    <!-- FOR TESTS : -->
+    <filter>
+        <filter-name>testFilter</filter-name>
+        <filter-class>org.pac4j.demo.j2e.TestFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>testFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
 
     <filter>
         <filter-name>indexFilter</filter-name>
@@ -55,10 +58,6 @@
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
 
-    <!--filter>
-        <filter-name>callbackFilter</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter-->
     <filter>
         <filter-name>callbackFilter</filter-name>
         <filter-class>org.pac4j.j2e.filter.CallbackFilter</filter-class>
@@ -234,10 +233,6 @@
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
 
-    <!--filter>
-        <filter-name>facebookCustomFilter</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter-->
     <filter>
         <filter-name>facebookCustomFilter</filter-name>
         <filter-class>org.pac4j.j2e.filter.SecurityFilter</filter-class>
