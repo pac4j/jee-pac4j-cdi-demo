@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--bean id="callbackFilter" class="org.pac4j.j2e.filter.CallbackFilter">
+        <property name="defaultUrl" value="/" />
+    </bean-->
+
+    <bean id="facebookCustomFilter" class="org.pac4j.j2e.filter.SecurityFilter">
+        <property name="clients" value="FacebookClient" />
+        <property name="authorizers" value="custom" />
+    </bean>
+
+</beans>
