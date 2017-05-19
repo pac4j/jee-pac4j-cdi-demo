@@ -1,5 +1,6 @@
 package org.pac4j.demo.j2e;
 
+
 import org.pac4j.cas.client.CasClient;
 import org.pac4j.cas.client.CasProxyReceptor;
 import org.pac4j.cas.config.CasConfiguration;
@@ -26,15 +27,32 @@ import org.pac4j.oidc.client.GoogleOidcClient;
 import org.pac4j.oidc.config.OidcConfiguration;
 import org.pac4j.saml.client.SAML2Client;
 import org.pac4j.saml.client.SAML2ClientConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class DemoConfigFactory implements ConfigFactory {
 
+    /** The static logger instance. */
+    private static final Logger logger = LoggerFactory.getLogger(DemoConfigFactory.class);
+
+
+    /**
+     * Programmatically build a Pac4J configuration.
+     *
+     * NOTE: This might be better to do as a CDI producer, but it's not implemented that way yet.
+     *
+     * @param parameters the parameters used to build the configuration
+     * @return a configuration object
+     */
     @Override
     public Config build(final Object... parameters) {
+        logger.debug("********** building...");
+        
         final OidcConfiguration oidcConfiguration = new OidcConfiguration();
         oidcConfiguration.setClientId("167480702619-8e1lo80dnu8bpk3k0lvvj27noin97vu9.apps.googleusercontent.com");
         oidcConfiguration.setSecret("MhMme_Ik6IH2JMnAT6MFIfee");
@@ -100,4 +118,6 @@ public class DemoConfigFactory implements ConfigFactory {
         config.addMatcher("excludedPath", new PathMatcher().excludeRegex("^/facebook/notprotected\\.jsp$"));
         return config;
     }
+
+
 }
