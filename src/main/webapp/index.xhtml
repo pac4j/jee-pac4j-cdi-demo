@@ -16,47 +16,52 @@
                 <div class="layout-main">
                     <div class="ui-g">
                         <div class="ui-g-12">
+                            <h:form id="form1">
+                                <div class="card">
+                                    <h1>Pac4J JSF/CDI Demo</h1>
+                                    <p>This page displays various JSF/CDI use-case and capabilities.</p>
+                                    <p><h:outputText value="session Id: #{session.id}"/></p>
+                                    <ui:remove>
+                                        <h:commandButton outcome="/index" value="CDI/JSF" style="display:inline-block;margin-top:5px"/>
+                                    </ui:remove>
+                                    <ul>
+                                        <li><h:link outcome="/oidc/index">Protected url by Google OpenID Connect: /oidc/index.action</h:link> (use a real account)</li>
+                                        <li>
+                                            <h:commandLink value="logout" action="#{logoutAction.logout}">
+                                                Logout via JSF Action
+                                            </h:commandLink>
+                                        </li>
+                                        <li>
+                                            <h:outputLink value="logout">
+                                                Logout via callback
+                                                <f:param name="url" value="/?forcepostlogouturl"/>
+                                            </h:outputLink>
+                                        </li>
+                                        <li>
+                                            <h:outputLink value="centralLogout">
+                                                Central Logout via callback
+                                                <f:param name="url" value="/?forcepostlogouturlafteridp"/>
+                                            </h:outputLink>
+                                        </li>
+                                        <li>
+                                            <h:outputLink value="/index.jsp">JSP examples</h:outputLink>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                            <div class="card">
-                                <h1>Pac4J JSF/CDI Demo</h1>
-                                <p>This page displays various JSF/CDI use-case and capabilities.</p>
-                                <p><h:outputText value="session Id: #{session.id}"/></p>
-                                <ui:remove>
-                                    <h:commandButton outcome="/index" value="CDI/JSF" style="display:inline-block;margin-top:5px"/>
-                                </ui:remove>
-                                <ul>
-                                    <li><h:link outcome="/oidc/index">Protected url by Google OpenID Connect: /oidc/index.action</h:link> (use a real account)</li>
-                                    <li>
-                                        <h:outputLink value="logout">
-                                            Logout
-                                            <f:param name="url" value="/?forcepostlogouturl"/>
-                                        </h:outputLink>
-                                    </li>
-                                    <li>
-                                        <h:outputLink value="centralLogout">
-                                            Central Logout
-                                            <f:param name="url" value="/?forcepostlogouturlafteridp"/>
-                                        </h:outputLink>
-                                    </li>
-                                    <li>
-                                        <h:outputLink value="/index.jsp">JSP examples</h:outputLink>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="card">
-                                <p>Found  <h:outputText value="#{profileView.profiles.size()}"/> profiles.</p>
-                                <h:panelGroup layout="block" rendered="#{profileView.profiles.size() > 0}">
-                                    <div class="profiles">
-                                        <h:dataTable value="#{profileView.profiles}" var="profile" border="1">
-                                            <h:column>
-                                                <h:outputText value="#{profile}"/>
-                                            </h:column>
-                                        </h:dataTable>
-                                    </div>
-                                </h:panelGroup>
-                            </div>
-
+                                <div class="card">
+                                    <p>Found  <h:outputText value="#{profileView.profiles.size()}"/> profiles.</p>
+                                    <h:panelGroup layout="block" rendered="#{profileView.profiles.size() > 0}">
+                                        <div class="profiles">
+                                            <h:dataTable value="#{profileView.profiles}" var="profile" border="1">
+                                                <h:column>
+                                                    <h:outputText value="#{profile}"/>
+                                                </h:column>
+                                            </h:dataTable>
+                                        </div>
+                                    </h:panelGroup>
+                                </div>
+                            </h:form>
                         </div>
                     </div>
                 </div>
