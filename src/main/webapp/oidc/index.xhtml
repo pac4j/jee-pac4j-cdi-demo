@@ -18,30 +18,8 @@
                         <div class="ui-g-12">
 
                             <div class="card">
-                                <h1>Pac4J JSF/CDI Demo</h1>
-                                <p>This page displays various JSF/CDI use-case and capabilities.</p>
-                                <p><h:outputText value="session Id: #{session.id}"/></p>
-                                <ui:remove>
-                                    <h:commandButton outcome="/index" value="CDI/JSF" style="display:inline-block;margin-top:5px"/>
-                                </ui:remove>
-                                <ul>
-                                    <li><h:link outcome="/oidc/index">Protected url by Google OpenID Connect: /oidc/index.action</h:link> (use a real account)</li>
-                                    <li>
-                                        <h:outputLink value="logout">
-                                            Logout
-                                            <f:param name="url" value="/?forcepostlogouturl"/>
-                                        </h:outputLink>
-                                    </li>
-                                    <li>
-                                        <h:outputLink value="centralLogout">
-                                            Central Logout
-                                            <f:param name="url" value="/?forcepostlogouturlafteridp"/>
-                                        </h:outputLink>
-                                    </li>
-                                    <li>
-                                        <h:outputLink value="/index.jsp">JSP examples</h:outputLink>
-                                    </li>
-                                </ul>
+                                <h1>Protected Area</h1>
+                                <p><h:link value="Back" outcome="/index"/></p>
                             </div>
 
                             <div class="card">

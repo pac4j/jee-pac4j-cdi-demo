@@ -1,7 +1,6 @@
 package org.pac4j.demo.j2e;
 
 
-import org.pac4j.core.config.Config;
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.profile.ProfileManager;
 import org.pac4j.demo.j2e.annotations.Pac4j;
@@ -23,9 +22,6 @@ public class ProfileView {
     private static final Logger logger = LoggerFactory.getLogger(ProfileView.class);
 
     @Inject @Pac4j
-    private Config config;
-
-    @Inject @Pac4j
     private WebContext webContext;
 
     @Inject @Pac4j
@@ -43,7 +39,6 @@ public class ProfileView {
 
     @PostConstruct
     public void init() {
-        logger.debug("config is null? {}", (config == null));
         logger.debug("webContext is null? {}", (webContext == null));
         logger.debug("profileManager is null? {}", (profileManager == null));
     }
