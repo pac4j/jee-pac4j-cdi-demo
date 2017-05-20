@@ -18,6 +18,7 @@ import org.pac4j.http.client.indirect.FormClient;
 import org.pac4j.http.client.indirect.IndirectBasicAuthClient;
 import org.pac4j.http.credentials.authenticator.test.SimpleTestUsernamePasswordAuthenticator;
 import org.pac4j.j2e.filter.CallbackFilter;
+import org.pac4j.j2e.filter.LogoutFilter;
 import org.pac4j.j2e.filter.SecurityFilter;
 import org.pac4j.jwt.config.signature.SecretSignatureConfiguration;
 import org.pac4j.jwt.config.signature.SignatureConfiguration;
@@ -71,6 +72,19 @@ public class DemoConfig {
 
         // Only filters for OIDC Google client are built for now.
         logger.debug("building servlet filters...");
+        createAndRegisterGoogleOIDCFilter(servletContext, config);
+        createAndRegisterCallbackFilter(servletContext, config);
+        createAndRegisterLocalLogoutFilter(servletContext, config);
+        return config;
+    }
+
+
+    /**
+     * Programmatically build and register Pac4J google OIDC servlet filter.
+     *
+     * @param servletContext the servlet context in which the filter will reside
+     */
+    private void createAndRegisterGoogleOIDCFilter(final ServletContext servletContext, final Config config) {
         SecurityFilter securityFilter = new SecurityFilter();
         securityFilter.setConfig(config); // This populates the ConfigSingleton which has not been populated yet (true?)
 
@@ -87,7 +101,15 @@ public class DemoConfig {
                 true,  // When this is true... declared mappings take precedence over this dynamic mapping
                 "/oidc/*"
         );
+    }
 
+
+    /**
+     * Programmatically build and register Pac4J callback servlet filter.
+     *
+     * @param servletContext the servlet context in which the filter will reside
+     */
+    private void createAndRegisterCallbackFilter(final ServletContext servletContext, final Config config) {
         CallbackFilter callbackFilter = new CallbackFilter();
         // The following will avoid RE-populating the ConfigSingleton which has already been populated when the
         // security filter config was set (true?)
@@ -104,8 +126,28 @@ public class DemoConfig {
                 true,  // When this is true... declared mappings take precedence over this dynamic mapping
                 "/callback"
         );
+    }
 
-        return config;
+
+    /**
+     * Programmatically build and register Pac4J local logout servlet filter.
+     *
+     * @param servletContext the servlet context in which the filter will reside
+     */
+    private void createAndRegisterLocalLogoutFilter(final ServletContext servletContext, final Config config) {
+        LogoutFilter logoutFilter = new LogoutFilter();
+        logoutFilter.setConfigOnly(config);
+        FilterRegistration.Dynamic localLogoutFilterRegistration = servletContext.addFilter(
+                "logoutFilter",
+                logoutFilter
+        );
+        localLogoutFilterRegistration.setInitParameter("defaultUrl", "/?defaulturlafterlogout");
+        localLogoutFilterRegistration.setInitParameter("killSession", "true");
+        localLogoutFilterRegistration.addMappingForUrlPatterns(
+                EnumSet.of(DispatcherType.REQUEST),
+                true,  // When this is true... declared mappings take precedence over this dynamic mapping
+                "/logout"
+        );
     }
 
 
@@ -116,6 +158,7 @@ public class DemoConfig {
      */
     private Config buildConfigurations() {
         logger.debug("building configurations...");
+
         // Google OIDC configuration/client
         final OidcConfiguration oidcConfiguration = new OidcConfiguration();
         oidcConfiguration.setClientId("167480702619-8e1lo80dnu8bpk3k0lvvj27noin97vu9.apps.googleusercontent.com");
@@ -125,6 +168,11 @@ public class DemoConfig {
         oidcConfiguration.addCustomParam("prompt", "consent");
         final GoogleOidcClient oidcClient = new GoogleOidcClient(oidcConfiguration);
         oidcClient.setAuthorizationGenerator((ctx, profile) -> { profile.addRole("ROLE_ADMIN"); return profile; });
+
+        final FormClient formClient = new FormClient(
+                "http://localhost:8080/loginForm.jsp",
+                new SimpleTestUsernamePasswordAuthenticator()
+        );
 
         final SAML2ClientConfiguration cfg = new SAML2ClientConfiguration("resource:samlKeystore.jks",
                 "pac4j-demo-passwd",
@@ -138,7 +186,6 @@ public class DemoConfig {
         final FacebookClient facebookClient = new FacebookClient("145278422258960", "be21409ba8f39b5dae2a7de525484da8");
         final TwitterClient twitterClient = new TwitterClient("CoxUiYwQOSFDReZYdjigBA", "2kAzunH5Btc4gRSaMr7D7MkyoJ5u1VzbOOzE8rBofs");
         // HTTP
-        final FormClient formClient = new FormClient("http://localhost:8080/loginForm.jsp", new SimpleTestUsernamePasswordAuthenticator());
         final IndirectBasicAuthClient indirectBasicAuthClient = new IndirectBasicAuthClient(new SimpleTestUsernamePasswordAuthenticator());
 
         // CAS
@@ -170,9 +217,13 @@ public class DemoConfig {
         // basic auth
         final DirectBasicAuthClient directBasicAuthClient = new DirectBasicAuthClient(new SimpleTestUsernamePasswordAuthenticator());
 
-        final Clients clients = new Clients("http://localhost:8080/callback", oidcClient, saml2Client, facebookClient,
-                twitterClient, formClient, indirectBasicAuthClient, casClient, stravaClient, parameterClient,
-                directBasicAuthClient, new AnonymousClient(), casProxy);
+        final Clients clients = new Clients(
+                "http://localhost:8080/callback",
+                oidcClient,
+                formClient,
+                saml2Client, facebookClient, twitterClient, indirectBasicAuthClient, casClient, stravaClient,
+                parameterClient, directBasicAuthClient, new AnonymousClient(), casProxy
+        );
 
         final Config config = new Config(clients);
         config.addAuthorizer("admin", new RequireAnyRoleAuthorizer<>("ROLE_ADMIN"));

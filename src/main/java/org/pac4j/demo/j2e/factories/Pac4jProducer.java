@@ -1,7 +1,6 @@
 package org.pac4j.demo.j2e.factories;
 
 
-import org.pac4j.core.config.Config;
 import org.pac4j.core.config.ConfigSingleton;
 import org.pac4j.core.context.J2EContext;
 import org.pac4j.core.context.WebContext;
@@ -42,7 +41,11 @@ public class Pac4jProducer {
     WebContext getWebContext(final HttpServletRequest httpServletRequest,
                              final HttpServletResponse httpServletResponse) {
         logger.debug("Producing a Pac4J web context...");
-        J2EContext j2EContext = new J2EContext(httpServletRequest, httpServletResponse, getConfig().getSessionStore());
+        J2EContext j2EContext = new J2EContext(
+                httpServletRequest,
+                httpServletResponse,
+                ConfigSingleton.getConfig().getSessionStore()
+        );
         logger.debug("Returning a Pac4J web context.");
         return j2EContext;
 
@@ -62,21 +65,6 @@ public class Pac4jProducer {
         ProfileManager profileManager = new ProfileManager(webContext);
         logger.debug("Returning a Pac4J profile manager.");
         return profileManager;
-    }
-
-
-    /**
-     * Factory method which produces a Pac4J configuration.
-     *
-     * @return the Pac4J configuration associated with the current web application
-     */
-    @Pac4j
-    @Produces
-    Config getConfig() {
-        logger.debug("Producing the Pac4J configuration...");
-        Config config = ConfigSingleton.getConfig();
-        logger.debug("Returning the Pac4J web context.");
-        return config;
     }
 
 
