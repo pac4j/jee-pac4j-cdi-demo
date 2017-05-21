@@ -23,95 +23,104 @@
     </repositories>
 
     <properties>
-        <pac4jVersion>2.0.0</pac4jVersion>
-        <j2e-pac4j.version>2.0.0</j2e-pac4j.version>
-        <java.version>1.8</java.version>
-        <javaee.version>7.0</javaee.version>
-        <payara-micro.version>4.1.1.171</payara-micro.version>
-        <payara-micro.http.port>8080</payara-micro.http.port>
+        <deploy.container.http.port>8080</deploy.container.http.port>
+        <java.min.version>1.8</java.min.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Plugin versioning -->
+        <embedded-payara-maven-plugin.version>1.0.0</embedded-payara-maven-plugin.version>
+        <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+        <payara-micro-maven-plugin.version>0.0.1</payara-micro-maven-plugin.version>
+        <!-- Dependency versions -->
+        <dependency.pac4j.version>2.0.0</dependency.pac4j.version>
+        <dependency.j2e-pac4j.version>2.0.0</dependency.j2e-pac4j.version>
+        <dependency.javaee.version>7.0</dependency.javaee.version>
+        <dependency.logback.version>1.1.3</dependency.logback.version>
+        <dependency.payara-embedded-all.version>4.1.1.171.1</dependency.payara-embedded-all.version>
+        <dependency.payara-micro.version>4.1.1.171</dependency.payara-micro.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>j2e-pac4j</artifactId>
-            <version>${j2e-pac4j.version}</version>
+            <version>${dependency.j2e-pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-oauth</artifactId>
-            <version>${pac4jVersion}</version>
+            <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-openid</artifactId>
-            <version>${pac4jVersion}</version>
+            <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-cas</artifactId>
-            <version>${pac4jVersion}</version>
+            <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-saml</artifactId>
-            <version>${pac4jVersion}</version>
+            <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-gae</artifactId>
-            <version>${pac4jVersion}</version>
+            <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-oidc</artifactId>
-            <version>${pac4jVersion}</version>
+            <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-http</artifactId>
-            <version>${pac4jVersion}</version>
+            <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-ldap</artifactId>
-            <version>${pac4jVersion}</version>
+            <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-jwt</artifactId>
-            <version>${pac4jVersion}</version>
+            <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-sql</artifactId>
-            <version>${pac4jVersion}</version>
+            <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-mongo</artifactId>
-            <version>${pac4jVersion}</version>
+            <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-stormpath</artifactId>
-            <version>${pac4jVersion}</version>
+            <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.1.3</version>
+            <version>${dependency.logback.version}</version>
         </dependency>
+
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>${javaee.version}</version>
+            <version>${dependency.javaee.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>fish.payara.extras</groupId>
             <artifactId>payara-micro</artifactId>
-            <version>${payara-micro.version}</version>
+            <version>${dependency.payara-micro.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -121,16 +130,43 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>${java.min.version}</source>
+                    <target>${java.min.version}</target>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>fish.payara.maven.plugins</groupId>
+                <groupId>co.luminositylabs.oss.maven.plugins</groupId>
+                <artifactId>embedded-payara-maven-plugin</artifactId>
+                <version>${embedded-payara-maven-plugin.version}</version>
+                <configuration>
+                    <port>${deploy.container.http.port}</port>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                        <configuration>
+                            <app>target/${project.build.finalName}.${project.packaging}</app>
+                            <contextRoot>/</contextRoot>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>fish.payara.extras</groupId>
+                        <artifactId>payara-embedded-all</artifactId>
+                        <version>${dependency.payara-embedded-all.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>co.luminositylabs.oss.maven.plugins</groupId>
                 <artifactId>payara-micro-maven-plugin</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>${payara-micro-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -142,7 +178,7 @@
                     <artifactItem>
                         <groupId>fish.payara.extras</groupId>
                         <artifactId>payara-micro</artifactId>
-                        <version>${payara-micro.version}</version>
+                        <version>${dependency.payara-micro.version}</version>
                     </artifactItem>
                     <deployWar>true</deployWar>
                     <commandLineOptions>
@@ -152,7 +188,7 @@
                         </option>
                         <option>
                             <key>--port</key>
-                            <value>${payara-micro.http.port}</value>
+                            <value>${deploy.container.http.port}</value>
                         </option>
                     </commandLineOptions>
                 </configuration>
