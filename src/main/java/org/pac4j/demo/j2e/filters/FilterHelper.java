@@ -2,9 +2,6 @@ package org.pac4j.demo.j2e.filters;
 
 import org.pac4j.core.exception.TechnicalException;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterRegistration;
@@ -20,12 +17,13 @@ import static org.pac4j.core.util.CommonHelper.*;
  *
  * @author Jerome Leleu
  */
-@Named
-@ApplicationScoped
 public class FilterHelper {
 
-    @Inject
-    private ServletContext servletContext;
+    private final ServletContext servletContext;
+
+    public FilterHelper(final ServletContext servletContext) {
+        this.servletContext = servletContext;
+    }
 
     /**
      * Add a filter mapping.

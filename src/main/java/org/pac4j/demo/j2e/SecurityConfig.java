@@ -48,13 +48,13 @@ public class SecurityConfig {
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
     /**
-     * Build the various Pac4J-specific configurations.
+     * Build the Pac4J-specific configuration.
      *
-     * @return a Pac4J config containing configurations, clients, authorizers, etc
+     * @return a Pac4J config containing clients, authorizers, etc
      */
     @Produces
     private Config buildConfiguration() {
-        logger.debug("building configurations...");
+        logger.debug("building Security configuration...");
 
         // Google OIDC configuration/client
         final OidcConfiguration oidcConfiguration = new OidcConfiguration();
