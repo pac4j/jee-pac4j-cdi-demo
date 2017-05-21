@@ -33,17 +33,6 @@
     </error-page>
     <!-- END JSF specific config (params, servlet config, and error handlers -->
 
-    <!-- FOR TESTS : -->
-    <!--<filter>
-        <filter-name>testFilter</filter-name>
-        <filter-class>org.pac4j.demo.j2e.TestFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>testFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-    </filter-mapping>-->
-
     <filter>
         <filter-name>indexFilter</filter-name>
         <filter-class>org.pac4j.j2e.filter.SecurityFilter</filter-class>
