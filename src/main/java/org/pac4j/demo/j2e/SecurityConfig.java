@@ -1,6 +1,5 @@
 package org.pac4j.demo.j2e;
 
-
 import org.pac4j.cas.client.CasClient;
 import org.pac4j.cas.client.CasProxyReceptor;
 import org.pac4j.cas.config.CasConfiguration;
@@ -11,15 +10,11 @@ import org.pac4j.core.client.Clients;
 import org.pac4j.core.client.direct.AnonymousClient;
 import org.pac4j.core.config.Config;
 import org.pac4j.core.matching.PathMatcher;
-import org.pac4j.demo.j2e.annotations.Initialized;
 import org.pac4j.http.client.direct.DirectBasicAuthClient;
 import org.pac4j.http.client.direct.ParameterClient;
 import org.pac4j.http.client.indirect.FormClient;
 import org.pac4j.http.client.indirect.IndirectBasicAuthClient;
 import org.pac4j.http.credentials.authenticator.test.SimpleTestUsernamePasswordAuthenticator;
-import org.pac4j.j2e.filter.CallbackFilter;
-import org.pac4j.j2e.filter.LogoutFilter;
-import org.pac4j.j2e.filter.SecurityFilter;
 import org.pac4j.jwt.config.signature.SecretSignatureConfiguration;
 import org.pac4j.jwt.config.signature.SignatureConfiguration;
 import org.pac4j.jwt.credentials.authenticator.JwtAuthenticator;
@@ -34,130 +29,32 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
+import javax.enterprise.inject.Produces;
 import javax.inject.Named;
-import javax.servlet.DispatcherType;
-import javax.servlet.FilterRegistration;
-import javax.servlet.ServletContext;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
-
 
 /**
  * Pac4J configuration used for demonstration and experimentation.
- *
- * NOTE: This might be better to do as a CDI producer, but it's not implemented that way yet.
  *
  * @author Phillip Ross
  */
 @Named
 @ApplicationScoped
-public class DemoConfig {
+public class SecurityConfig {
 
     /** The static logger instance. */
-    private static final Logger logger = LoggerFactory.getLogger(DemoConfig.class);
-
-
-    /**
-     * Programmatically build a Pac4J configuration.
-     *
-     * @param servletContext the servlet context in which the configuration will apply
-     * @return a Pac4j configuration object
-     */
-    public Config build(@Observes @Initialized ServletContext servletContext) {
-        // First build all of the pac4j-specific configurations, clients, authorizers, etc.
-        Config config = buildConfigurations();
-
-        // Only filters for OIDC Google client are built for now.
-        logger.debug("building servlet filters...");
-        createAndRegisterGoogleOIDCFilter(servletContext, config);
-        createAndRegisterCallbackFilter(servletContext, config);
-        createAndRegisterLocalLogoutFilter(servletContext, config);
-        return config;
-    }
-
+    private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
     /**
-     * Programmatically build and register Pac4J google OIDC servlet filter.
+     * Build the Pac4J-specific configuration.
      *
-     * @param servletContext the servlet context in which the filter will reside
+     * @return a Pac4J config containing clients, authorizers, etc
      */
-    private void createAndRegisterGoogleOIDCFilter(final ServletContext servletContext, final Config config) {
-        SecurityFilter securityFilter = new SecurityFilter();
-        securityFilter.setConfig(config); // This populates the ConfigSingleton which has not been populated yet (true?)
-
-        // Create, register, and map a filter which applies the Google OIDC client to the urls to be authorized by
-        // the google OIDC mechanism.
-        FilterRegistration.Dynamic oidcFilterRegistration = servletContext.addFilter(
-                "OidcFilter",
-                securityFilter
-        );
-        oidcFilterRegistration.setInitParameter("clients", "GoogleOidcClient");
-        oidcFilterRegistration.setInitParameter("authorizers", "securityHeaders");
-        oidcFilterRegistration.addMappingForUrlPatterns(
-                EnumSet.of(DispatcherType.REQUEST),
-                true,  // When this is true... declared mappings take precedence over this dynamic mapping
-                "/oidc/*"
-        );
-    }
-
-
-    /**
-     * Programmatically build and register Pac4J callback servlet filter.
-     *
-     * @param servletContext the servlet context in which the filter will reside
-     */
-    private void createAndRegisterCallbackFilter(final ServletContext servletContext, final Config config) {
-        CallbackFilter callbackFilter = new CallbackFilter();
-        // The following will avoid RE-populating the ConfigSingleton which has already been populated when the
-        // security filter config was set (true?)
-        callbackFilter.setConfigOnly(config);
-        FilterRegistration.Dynamic callbackFilterRegistration = servletContext.addFilter(
-                "callbackFilter",
-                callbackFilter
-        );
-        callbackFilterRegistration.setInitParameter("defaultUrl", "/");
-        callbackFilterRegistration.setInitParameter("multiProfile", "true");
-        callbackFilterRegistration.setInitParameter("renewSession", "true");
-        callbackFilterRegistration.addMappingForUrlPatterns(
-                EnumSet.of(DispatcherType.REQUEST),
-                true,  // When this is true... declared mappings take precedence over this dynamic mapping
-                "/callback"
-        );
-    }
-
-
-    /**
-     * Programmatically build and register Pac4J local logout servlet filter.
-     *
-     * @param servletContext the servlet context in which the filter will reside
-     */
-    private void createAndRegisterLocalLogoutFilter(final ServletContext servletContext, final Config config) {
-        LogoutFilter logoutFilter = new LogoutFilter();
-        logoutFilter.setConfigOnly(config);
-        FilterRegistration.Dynamic localLogoutFilterRegistration = servletContext.addFilter(
-                "logoutFilter",
-                logoutFilter
-        );
-        localLogoutFilterRegistration.setInitParameter("defaultUrl", "/?defaulturlafterlogout");
-        localLogoutFilterRegistration.setInitParameter("killSession", "true");
-        localLogoutFilterRegistration.addMappingForUrlPatterns(
-                EnumSet.of(DispatcherType.REQUEST),
-                true,  // When this is true... declared mappings take precedence over this dynamic mapping
-                "/logout"
-        );
-    }
-
-
-    /**
-     * Build the various Pac4J-specific configurations.
-     *
-     * @return a Pac4J config containing configurations, clients, authorizers, etc
-     */
-    private Config buildConfigurations() {
-        logger.debug("building configurations...");
+    @Produces
+    private Config buildConfiguration() {
+        logger.debug("building Security configuration...");
 
         // Google OIDC configuration/client
         final OidcConfiguration oidcConfiguration = new OidcConfiguration();
@@ -233,6 +130,4 @@ public class DemoConfig {
         config.addMatcher("excludedPath", new PathMatcher().excludeRegex("^/facebook/notprotected\\.jsp$"));
         return config;
     }
-
-
 }
