@@ -1,6 +1,7 @@
 package org.pac4j.demo.j2e.ui;
 
 
+import org.pac4j.core.config.Config;
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.profile.ProfileManager;
 import org.pac4j.demo.j2e.annotations.Pac4j;
@@ -36,6 +37,9 @@ public class ProfileView {
     @Inject @Pac4j
     private ProfileManager profileManager;
 
+    @Inject
+    private Config config;
+
 
     public ProfileView() {
     }
@@ -54,6 +58,7 @@ public class ProfileView {
     /** Simply prints some debugging information post-construction. */
     @PostConstruct
     public void init() {
+        logger.debug("config is null? {}", (config == null));
         logger.debug("webContext is null? {}", (webContext == null));
         logger.debug("profileManager is null? {}", (profileManager == null));
     }

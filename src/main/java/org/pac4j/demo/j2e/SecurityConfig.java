@@ -52,7 +52,7 @@ public class SecurityConfig {
      *
      * @return a Pac4J config containing clients, authorizers, etc
      */
-    @Produces
+    @Produces @ApplicationScoped
     private Config buildConfiguration() {
         logger.debug("building Security configuration...");
 
