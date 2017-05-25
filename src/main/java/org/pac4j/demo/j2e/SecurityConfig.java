@@ -19,7 +19,6 @@ import org.pac4j.jwt.config.signature.SecretSignatureConfiguration;
 import org.pac4j.jwt.config.signature.SignatureConfiguration;
 import org.pac4j.jwt.credentials.authenticator.JwtAuthenticator;
 import org.pac4j.oauth.client.FacebookClient;
-import org.pac4j.oauth.client.StravaClient;
 import org.pac4j.oauth.client.TwitterClient;
 import org.pac4j.oidc.client.GoogleOidcClient;
 import org.pac4j.oidc.config.OidcConfiguration;
@@ -29,8 +28,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
-import javax.inject.Named;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,12 +39,13 @@ import java.util.List;
  *
  * @author Phillip Ross
  */
-@Named
-@ApplicationScoped
+@Dependent
 public class SecurityConfig {
 
     /** The static logger instance. */
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
+
+    public static final String JWT_SALT = "12345678901234567890123456789012";
 
     /**
      * Build the Pac4J-specific configuration.
@@ -67,7 +67,7 @@ public class SecurityConfig {
         oidcClient.setAuthorizationGenerator((ctx, profile) -> { profile.addRole("ROLE_ADMIN"); return profile; });
 
         final FormClient formClient = new FormClient(
-                "http://localhost:8080/loginForm.jsp",
+                "http://localhost:8080/loginForm.action",
                 new SimpleTestUsernamePasswordAuthenticator()
         );
 
@@ -92,21 +92,9 @@ public class SecurityConfig {
         configuration.setProxyReceptor(casProxy);
         final CasClient casClient = new CasClient(configuration);
 
-        /*final DirectCasClient casClient = new DirectCasClient(configuration);
-        casClient.setName("CasClient");*/
-
-        // Strava
-        final StravaClient stravaClient = new StravaClient();
-        stravaClient.setApprovalPrompt("auto");
-        // client_id
-        stravaClient.setKey("3945");
-        // client_secret
-        stravaClient.setSecret("f03df80582396cddfbe0b895a726bac27c8cf739");
-        stravaClient.setScope("view_private");
-
         // REST authent with JWT for a token passed in the url as the token parameter
         final List<SignatureConfiguration> signatures = new ArrayList<>();
-        signatures.add(new SecretSignatureConfiguration(Constants.JWT_SALT));
+        signatures.add(new SecretSignatureConfiguration(JWT_SALT));
         ParameterClient parameterClient = new ParameterClient("token", new JwtAuthenticator(signatures));
         parameterClient.setSupportGetRequest(true);
         parameterClient.setSupportPostRequest(false);
@@ -118,7 +106,7 @@ public class SecurityConfig {
                 "http://localhost:8080/callback",
                 oidcClient,
                 formClient,
-                saml2Client, facebookClient, twitterClient, indirectBasicAuthClient, casClient, stravaClient,
+                saml2Client, facebookClient, twitterClient, indirectBasicAuthClient, casClient,
                 parameterClient, directBasicAuthClient, new AnonymousClient(), casProxy
         );
 
@@ -127,7 +115,7 @@ public class SecurityConfig {
         config.addAuthorizer("custom", new CustomAuthorizer());
         config.addAuthorizer("mustBeAnon", new IsAnonymousAuthorizer<>("/?mustBeAnon"));
         config.addAuthorizer("mustBeAuth", new IsAuthenticatedAuthorizer<>("/?mustBeAuth"));
-        config.addMatcher("excludedPath", new PathMatcher().excludeRegex("^/facebook/notprotected\\.jsp$"));
+        config.addMatcher("excludedPath", new PathMatcher().excludeRegex("^/facebook/notprotected\\.action$"));
         return config;
     }
 }
