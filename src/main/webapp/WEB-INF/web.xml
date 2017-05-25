@@ -39,21 +39,21 @@
 
     <error-page>
         <error-code>401</error-code>
-        <location>/error401.jsp</location>
+        <location>/error401.action</location>
     </error-page>
 
     <error-page>
         <error-code>403</error-code>
-        <location>/error403.jsp</location>
+        <location>/error403.action</location>
     </error-page>
 
     <error-page>
         <error-code>500</error-code>
-        <location>/error500.jsp</location>
+        <location>/error500.action</location>
     </error-page>
 
     <error-page>
         <exception-type>java.lang.Exception</exception-type >
-        <location>/error500.jsp</location>
+        <location>/error500.action</location>
     </error-page>
 </web-app>

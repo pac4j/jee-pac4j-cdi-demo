@@ -44,7 +44,7 @@ public class WebConfig {
         filterHelper.addFilterMapping("indexFilter", indexFilter, "/");
 
         final SecurityFilter mustBeAnonFilter = new SecurityFilter(config, "AnonymousClient", "mustBeAnon");
-        filterHelper.addFilterMapping("mustBeAnonFilter", mustBeAnonFilter, "/loginForm.jsp");
+        filterHelper.addFilterMapping("mustBeAnonFilter", mustBeAnonFilter, "/loginForm.action");
 
         final CallbackFilter callbackFilter = new CallbackFilter(config, "/");
         callbackFilter.setRenewSession(true);
@@ -94,9 +94,6 @@ public class WebConfig {
 
         final SecurityFilter casFilter = new SecurityFilter(config, "CasClient", "securityHeaders");
         filterHelper.addFilterMapping("casFilter", casFilter, "/cas/*");
-
-        final SecurityFilter stravaFilter = new SecurityFilter(config, "StravaClient", "securityHeaders");
-        filterHelper.addFilterMapping("stravaFilter", stravaFilter, "/strava/*");
 
         final SecurityFilter mustBeAuthFilter = new SecurityFilter(config, "AnonymousClient", "mustBeAuth");
         filterHelper.addFilterMapping("mustBeAuthFilter", mustBeAuthFilter, "/logout");
