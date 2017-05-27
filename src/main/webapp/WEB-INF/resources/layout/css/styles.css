@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.main-body {
+    margin: 0;
+    padding: 0;
+}
+.layout-wrapper {
+    margin: auto;
+    padding: 10px;
+}
+.ui-container {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #000000;
+}
