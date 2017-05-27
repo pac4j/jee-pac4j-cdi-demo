@@ -1,45 +1,18 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-    <f:facet name="first">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-    </f:facet>
-    <title>Pac4J CDI Demo</title>
-</h:head>
-<h:body styleClass="main-body">
-    <div class="layout-wrapper">
-        <div class="layout-main">
-            <div class="ui-g">
-                <div class="ui-g-12">
-
-                    <div class="card">
-                        <h1>Protected Area</h1>
-                        <p><h:link value="Back" outcome="/index"/></p>
-                    </div>
-
-                    <div class="card">
-                        <p>Found  <h:outputText value="#{profileView.profiles.size()}"/> profiles.</p>
-                        <h:panelGroup layout="block" rendered="#{profileView.profiles.size() > 0}">
-                            <div class="profiles">
-                                <h:dataTable value="#{profileView.profiles}" var="profile" border="1">
-                                    <h:column>
-                                        <h:outputText value="#{profile}"/>
-                                    </h:column>
-                                </h:dataTable>
-                            </div>
-                        </h:panelGroup>
-                        <p>Proxy ticket: <h:outputText value="#{casView.proxyTicket}"/></p>
-                    </div>
-
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="title">Pac4J CDI Demo - Protected Area</ui:define>
+    <ui:define name="content">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <div class="ui-container">
+                    <h1>Protected Area</h1>
+                    <p><h:link value="Back" outcome="/index"/></p>
                 </div>
+                <ui:include src="/WEB-INF/facelets/includes/pac4j-profiles-list.xhtml"/>
             </div>
         </div>
-    </div>
-</h:body>
-</html>
+    </ui:define>
+</ui:composition>

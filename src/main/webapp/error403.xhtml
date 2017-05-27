@@ -1,29 +1,17 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-    <f:facet name="first">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-    </f:facet>
-    <title>Pac4J CDI Demo</title>
-</h:head>
-<h:body styleClass="main-body">
-    <div class="layout-wrapper">
-        <div class="layout-main">
-            <div class="ui-g">
-                <div class="ui-g-12">
-                    <div class="card">
-                        <h1>Forbidden</h1>
-                        <p><h:link value="Back" outcome="/index"/></p>
-                    </div>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="title">Pac4J CDI Demo - Forbidden</ui:define>
+    <ui:define name="content">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <div class="ui-container">
+                    <h1>Status 403: Forbidden</h1>
+                    <p><h:link value="Back" outcome="/index"/></p>
                 </div>
             </div>
         </div>
-    </div>
-</h:body>
-</html>
+    </ui:define>
+</ui:composition>

@@ -1,10 +1,11 @@
 package org.pac4j.demo.j2e.ui;
 
 
-import org.pac4j.core.config.Config;
 import org.pac4j.core.context.WebContext;
+import org.pac4j.core.profile.AnonymousProfile;
 import org.pac4j.core.profile.ProfileManager;
 import org.pac4j.demo.j2e.annotations.Pac4j;
+import org.pac4j.oidc.profile.google.GoogleOidcProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,10 +38,8 @@ public class ProfileView {
     @Inject @Pac4j
     private ProfileManager profileManager;
 
-    @Inject
-    private Config config;
 
-
+    /** Simple no-args constructor. */
     public ProfileView() {
     }
 
@@ -55,10 +54,41 @@ public class ProfileView {
     }
 
 
+    /**
+     * Gets the Google OIDC profile if it exists.
+     *
+     * @return the Google OIDC profile
+     */
+    public GoogleOidcProfile getGoogleOidcProfile() {
+        GoogleOidcProfile googleOidcProfile = null;
+        for (Object profileObject : profileManager.getAll(true)) {
+            if (profileObject instanceof GoogleOidcProfile) {
+                googleOidcProfile = (GoogleOidcProfile)profileObject;
+            }
+        }
+        return googleOidcProfile;
+    }
+
+
+    /**
+     * Gets the Anonymous profile if it exists.
+     *
+     * @return the Anonymous profile
+     */
+    public AnonymousProfile getAnonymousProfile() {
+        AnonymousProfile anonymousProfile = null;
+        for (Object profileObject : profileManager.getAll(true)) {
+            if (profileObject instanceof AnonymousProfile) {
+                anonymousProfile = (AnonymousProfile)profileObject;
+            }
+        }
+        return anonymousProfile;
+    }
+
+
     /** Simply prints some debugging information post-construction. */
     @PostConstruct
     public void init() {
-        logger.debug("config is null? {}", (config == null));
         logger.debug("webContext is null? {}", (webContext == null));
         logger.debug("profileManager is null? {}", (profileManager == null));
     }

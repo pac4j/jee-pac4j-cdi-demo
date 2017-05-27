@@ -1,83 +1,84 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    <h:head>
-        <f:facet name="first">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-            <meta name="apple-mobile-web-app-capable" content="yes" />
-        </f:facet>
-        <title>Pac4J CDI Demo</title>
-    </h:head>
-    <h:body styleClass="main-body">
-        <div class="layout-wrapper">
-            <div class="layout-main">
-                <div class="ui-g">
-                    <div class="ui-g-12">
-                        <h:form id="form1">
-                            <div class="card">
-                                <h1>Pac4J JSF/CDI Demo</h1>
-                                <p>This page displays various JSF/CDI use-case and capabilities.</p>
-                                <p><h:outputText value="session Id: #{session.id}"/></p>
-                                <ui:remove>
-                                    <h:commandButton outcome="/index" value="CDI/JSF" style="display:inline-block;margin-top:5px"/>
-                                </ui:remove>
-                                <ul>
-                                    <li><h:link outcome="facebook/index">Protected url by Facebook: facebook/index</h:link> (use a real account)</li>
-                                    <li><h:link outcome="facebook/notprotected">Not protected page: facebook/notprotected</h:link> (no authentication required)</li>
-                                    <li><h:link outcome="facebookadmin/index">Protected url by Facebook with ROLE_ADMIN: facebookadmin/index</h:link> (use a real account)</li>
-                                    <li><h:link outcome="facebookcustom/index">Protected url by Facebook with custom authorizer (= must be a <em>CommonProfile</em> where the username starts with "jle"): facebookcustom/index</h:link> (login with form or basic authentication before with jle* username)</li>
-                                    <li><h:link outcome="twitter/index">Protected url by Twitter: twitter/index</h:link> or <h:link outcome="twitter/index?client_name=FacebookClient">by Facebook: twitter/index?client_name=FacebookClient</h:link> (use a real account)</li>
-                                    <li><h:link outcome="form/index">Protected url by form authentication: form/index</h:link> (use login = pwd)</li>
-                                    <li><h:link outcome="basicauth/index">Protected url by indirect basic auth: basicauth/index</h:link> (use login = pwd)</li>
-                                    <li><h:link outcome="cas/index">Protected url by CAS: cas/index</h:link> (use login = pwd)</li>
-                                    <li><h:link outcome="saml2/index">Protected url by SAML2: saml2/index</h:link> (use testpac4j at gmail.com / Pac4jtest)</li>
-                                    <li><h:link outcome="/oidc/index">Protected url by Google OpenID Connect: /oidc/index.action</h:link> (use a real account)</li>
-                                    <li><h:link outcome="protected/index">Protected url: protected/index</h:link> (won't start any login process)</li>
-                                    <li><h:link outcome="jwt">Generate a JWT token</h:link> (after being authenticated)</li>
-                                    <li><h:link outcome="/dba/index">Protected url by DirectBasicAuthClient: /dba/index</h:link> (use a real account)</li>
-                                    <li><h:link outcome="/rest-jwt/index">Protected url by ParameterClient: /rest-jwt/index</h:link> (with request parameter: token=<em>jwt_generated_token</em>)</li>
-                                    <li><a href="forceLogin?client_name=FacebookClient">Force Facebook login</a> (even if already authenticated)</li>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="title">Pac4J CDI Demo</ui:define>
+    <ui:define name="content">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <h:form id="form1">
+                    <div class="ui-container">
+                        <h1>Pac4J JSF/CDI Demo</h1>
+                        <p>This page displays various JSF/CDI use-case and capabilities.</p>
+                        <p><h:outputText value="session Id: #{session.id}"/></p>
+                        <ul>
+                            <li><h:link
+                                    outcome="facebook/index">Protected url by Facebook: facebook/index</h:link> (use a real account)
+                            </li>
+                            <li><h:link
+                                    outcome="facebook/notprotected">Not protected page: facebook/notprotected</h:link> (no authentication required)
+                            </li>
+                            <li><h:link
+                                    outcome="facebookadmin/index">Protected url by Facebook with ROLE_ADMIN: facebookadmin/index</h:link> (use a real account)
+                            </li>
+                            <li><h:link
+                                    outcome="facebookcustom/index">Protected url by Facebook with custom authorizer (= must be a
+                                <em>CommonProfile</em> where the username starts with "jle"): facebookcustom/index</h:link> (login with form or basic authentication before with jle* username)
+                            </li>
+                            <li><h:link outcome="twitter/index">Protected url by Twitter: twitter/index</h:link> or
+                                <h:link outcome="twitter/index?client_name=FacebookClient">by Facebook: twitter/index?client_name=FacebookClient</h:link> (use a real account)
+                            </li>
+                            <li><h:link
+                                    outcome="form/index">Protected url by form authentication: form/index</h:link> (use login = pwd)
+                            </li>
+                            <li><h:link
+                                    outcome="basicauth/index">Protected url by indirect basic auth: basicauth/index</h:link> (use login = pwd)
+                            </li>
+                            <li><h:link outcome="cas/index">Protected url by CAS: cas/index</h:link> (use login = pwd)
+                            </li>
+                            <li><h:link
+                                    outcome="saml2/index">Protected url by SAML2: saml2/index</h:link> (use testpac4j at gmail.com / Pac4jtest)
+                            </li>
+                            <li><h:link
+                                    outcome="/oidc/index">Protected url by Google OpenID Connect: /oidc/index.action</h:link> (use a real account)
+                            </li>
+                            <li><h:link
+                                    outcome="protected/index">Protected url: protected/index</h:link> (won't start any login process)
+                            </li>
+                            <li><h:link outcome="jwt">Generate a JWT token</h:link> (after being authenticated)</li>
+                            <li><h:link
+                                    outcome="/dba/index">Protected url by DirectBasicAuthClient: /dba/index</h:link> (use a real account)
+                            </li>
+                            <li><h:link
+                                    outcome="/rest-jwt/index">Protected url by ParameterClient: /rest-jwt/index</h:link> (with request parameter: token=<em>jwt_generated_token</em>)
+                            </li>
+                            <li>
+                                <a href="forceLogin?client_name=FacebookClient">Force Facebook login</a> (even if already authenticated)
+                            </li>
 
-                                    <li>
-                                        <h:commandLink value="logout" action="#{logoutAction.logout}">
-                                            Logout via JSF Action
-                                        </h:commandLink>
-                                    </li>
-                                    <li>
-                                        <h:outputLink value="logout">
-                                            Logout via callback
-                                            <f:param name="url" value="/?forcepostlogouturl"/>
-                                        </h:outputLink>
-                                    </li>
-                                    <li>
-                                        <h:outputLink value="centralLogout">
-                                            Central Logout via callback
-                                            <f:param name="url" value="/?forcepostlogouturlafteridp"/>
-                                        </h:outputLink>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="card">
-                                <p>Found  <h:outputText value="#{profileView.profiles.size()}"/> profiles.</p>
-                                <h:panelGroup layout="block" rendered="#{profileView.profiles.size() > 0}">
-                                    <div class="profiles">
-                                        <h:dataTable value="#{profileView.profiles}" var="profile" border="1">
-                                            <h:column>
-                                                <h:outputText value="#{profile}"/>
-                                            </h:column>
-                                        </h:dataTable>
-                                    </div>
-                                </h:panelGroup>
-                            </div>
-                        </h:form>
+                            <li>
+                                <h:commandLink value="logout" action="#{logoutAction.logout}">
+                                    Logout via JSF Action
+                                </h:commandLink>
+                            </li>
+                            <li>
+                                <h:outputLink value="logout">
+                                    Logout via callback
+                                    <f:param name="url" value="/?forcepostlogouturl"/>
+                                </h:outputLink>
+                            </li>
+                            <li>
+                                <h:outputLink value="centralLogout">
+                                    Central Logout via callback
+                                    <f:param name="url" value="/?forcepostlogouturlafteridp"/>
+                                </h:outputLink>
+                            </li>
+                        </ul>
                     </div>
-                </div>
+                    <ui:include src="/WEB-INF/facelets/includes/pac4j-profiles-list.xhtml"/>
+                </h:form>
             </div>
         </div>
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>
