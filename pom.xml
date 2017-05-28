@@ -37,7 +37,6 @@
         <dependency.logback.version>1.1.3</dependency.logback.version>
         <dependency.payara-embedded-all.version>4.1.1.171.1</dependency.payara-embedded-all.version>
         <dependency.payara-micro.version>4.1.1.171</dependency.payara-micro.version>
-        <dependency.cdi-api>1.1</dependency.cdi-api>
     </properties>
 
     <dependencies>
@@ -112,12 +111,6 @@
             <version>${dependency.logback.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
-            <version>${dependency.cdi-api}</version>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
