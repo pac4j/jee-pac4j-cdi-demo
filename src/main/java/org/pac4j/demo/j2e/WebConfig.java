@@ -1,7 +1,6 @@
 package org.pac4j.demo.j2e;
 
 import org.pac4j.core.config.Config;
-import org.pac4j.demo.j2e.annotations.Initialized;
 import org.pac4j.demo.j2e.filters.FilterHelper;
 import org.pac4j.j2e.filter.CallbackFilter;
 import org.pac4j.j2e.filter.LogoutFilter;
@@ -10,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Initialized;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -35,7 +35,7 @@ public class WebConfig {
      *
      * @param servletContext the servlet context in which the configuration will apply
      */
-    public void build(@Observes @Initialized ServletContext servletContext) {
+    public void build(@Observes @Initialized(ApplicationScoped.class) ServletContext servletContext) {
         logger.debug("building Web configuration...");
 
         final FilterHelper filterHelper = new FilterHelper(servletContext);
