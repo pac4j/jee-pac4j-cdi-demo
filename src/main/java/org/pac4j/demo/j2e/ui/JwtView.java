@@ -3,7 +3,6 @@ package org.pac4j.demo.j2e.ui;
 import org.pac4j.core.profile.CommonProfile;
 import org.pac4j.core.profile.ProfileManager;
 import org.pac4j.demo.j2e.SecurityConfig;
-import org.pac4j.demo.j2e.annotations.Pac4j;
 import org.pac4j.jwt.config.signature.SecretSignatureConfiguration;
 import org.pac4j.jwt.profile.JwtGenerator;
 import org.slf4j.Logger;
@@ -25,7 +24,7 @@ public class JwtView {
     private static final Logger logger = LoggerFactory.getLogger(JwtView.class);
 
     /** The Pac4j profile manager. */
-    @Inject @Pac4j
+    @Inject
     private ProfileManager profileManager;
 
     public String generate() {

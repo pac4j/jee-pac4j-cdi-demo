@@ -3,7 +3,6 @@ package org.pac4j.demo.j2e.ui;
 import org.pac4j.cas.profile.CasProxyProfile;
 import org.pac4j.core.profile.CommonProfile;
 import org.pac4j.core.profile.ProfileManager;
-import org.pac4j.demo.j2e.annotations.Pac4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +22,7 @@ public class CasView {
     private static final Logger logger = LoggerFactory.getLogger(CasView.class);
 
     /** The Pac4j profile manager. */
-    @Inject @Pac4j
+    @Inject
     private ProfileManager profileManager;
 
     public String getProxyTicket() {

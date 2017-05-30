@@ -5,7 +5,6 @@ import org.pac4j.core.config.ConfigSingleton;
 import org.pac4j.core.context.J2EContext;
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.profile.ProfileManager;
-import org.pac4j.demo.j2e.annotations.Pac4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +35,6 @@ public class Pac4jProducer {
      * @param httpServletResponse the http servlet response to be used for building the web context
      * @return a Pac4J web context associated with the current servlet request
      */
-    @Pac4j
     @Produces
     WebContext getWebContext(final HttpServletRequest httpServletRequest,
                              final HttpServletResponse httpServletResponse) {
@@ -58,9 +56,8 @@ public class Pac4jProducer {
      * @param webContext the web context to be used for building the profile manager
      * @return a Pac4J profile manager associated with the current servlet request
      */
-    @Pac4j
     @Produces
-    ProfileManager getProfileManager(@Pac4j final WebContext webContext) {
+    ProfileManager getProfileManager(final WebContext webContext) {
         logger.debug("Producing a Pac4J profile manager...");
         ProfileManager profileManager = new ProfileManager(webContext);
         logger.debug("Returning a Pac4J profile manager.");

@@ -2,7 +2,6 @@ package org.pac4j.demo.j2e.ui;
 
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.profile.ProfileManager;
-import org.pac4j.demo.j2e.annotations.Pac4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,11 +26,10 @@ public class LogoutAction {
 
     /** The Pac4j web context. */
     @Inject
-    @Pac4j
     private WebContext webContext;
 
     /** The Pac4j profile manager. */
-    @Inject @Pac4j
+    @Inject
     private ProfileManager profileManager;
 
 

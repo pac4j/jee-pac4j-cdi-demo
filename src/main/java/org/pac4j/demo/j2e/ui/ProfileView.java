@@ -4,7 +4,6 @@ package org.pac4j.demo.j2e.ui;
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.profile.AnonymousProfile;
 import org.pac4j.core.profile.ProfileManager;
-import org.pac4j.demo.j2e.annotations.Pac4j;
 import org.pac4j.oidc.profile.google.GoogleOidcProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,11 +30,11 @@ public class ProfileView {
     private static final Logger logger = LoggerFactory.getLogger(ProfileView.class);
 
     /** The Pac4j web context. */
-    @Inject @Pac4j
+    @Inject
     private WebContext webContext;
 
     /** The Pac4j profile manager. */
-    @Inject @Pac4j
+    @Inject
     private ProfileManager profileManager;
 
 
