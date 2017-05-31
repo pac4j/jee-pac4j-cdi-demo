@@ -71,6 +71,12 @@ public class SecurityConfig {
                 new SimpleTestUsernamePasswordAuthenticator()
         );
 
+        final FormClient jsfFormClient = new FormClient(
+                "http://localhost:8080/jsfLoginForm.action",
+                new SimpleTestUsernamePasswordAuthenticator()
+        );
+        jsfFormClient.setName("jsfFormClient");
+
         final SAML2ClientConfiguration cfg = new SAML2ClientConfiguration("resource:samlKeystore.jks",
                 "pac4j-demo-passwd",
                 "pac4j-demo-passwd",
@@ -106,6 +112,7 @@ public class SecurityConfig {
                 "http://localhost:8080/callback",
                 oidcClient,
                 formClient,
+                jsfFormClient,
                 saml2Client, facebookClient, twitterClient, indirectBasicAuthClient, casClient,
                 parameterClient, directBasicAuthClient, new AnonymousClient(), casProxy
         );
