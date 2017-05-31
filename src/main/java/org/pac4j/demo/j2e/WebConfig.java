@@ -89,6 +89,9 @@ public class WebConfig {
         final SecurityFilter formFilter = new SecurityFilter(config, "FormClient", "securityHeaders");
         filterHelper.addFilterMapping("formFilter", formFilter, "/form/*");
 
+        final SecurityFilter jsfFormFilter = new SecurityFilter(config, "jsfFormClient", "securityHeaders");
+        filterHelper.addFilterMapping("jsfFormFilter", jsfFormFilter, "/jsfform/*");
+
         final SecurityFilter indirectBasicAuthFilter = new SecurityFilter(config, "IndirectBasicAuthClient", "securityHeaders");
         filterHelper.addFilterMapping("indirectBasicAuthFilter", indirectBasicAuthFilter, "/basicauth/*");
 
