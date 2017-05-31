@@ -5,112 +5,38 @@
     <div class="ui-container">
         <p>Found  <h:outputText value="#{profileView.profiles.size()}"/> profiles.</p>
         <h:panelGroup layout="block" rendered="#{profileView.profiles.size() > 0}">
-            <p>One of the profiles is an Anonymous profile?  <h:outputText value="#{not empty profileView.anonymousProfile}"/></p>
-            <p>One of the profiles is a Google OIDC profile?  <h:outputText value="#{not empty profileView.googleOidcProfile}"/></p>
-
-            <h:panelGroup layout="block" rendered="#{not empty profileView.anonymousProfile}">
-                <h2>Anonymous Profile Details</h2>
-                <h3>User Profile Details</h3>
-                <p><h:outputText value="Id: #{profileView.anonymousProfile.id}"/></p>
-                <p><h:outputText value="Type Id: #{profileView.anonymousProfile.typedId}"/></p>
-                <p><h:outputText value="Attributes: #{profileView.anonymousProfile.attributes.size()}"/> attributes</p>
-                <p><h:outputText value="Roles: #{profileView.anonymousProfile.roles.size()}"/> roles</p>
-                <h:panelGroup layout="block" rendered="#{profileView.anonymousProfile.roles.size() > 0}">
-                    <ul>
-                        <ui:repeat value="#{profileView.anonymousProfile.roles.toArray()}" var="role">
-                            <li><h:outputText value="#{role}"/></li>
-                        </ui:repeat>
-                    </ul>
-                </h:panelGroup>
-                <p><h:outputText value="Permissions: #{profileView.anonymousProfile.permissions.size()}"/> permissions</p>
-                <h:panelGroup layout="block" rendered="#{profileView.anonymousProfile.permissions.size() > 0}">
-                    <ul>
-                        <ui:repeat value="#{profileView.anonymousProfile.permissions.toArray()}" var="permission">
-                            <li><h:outputText value="#{permission}"/></li>
-                        </ui:repeat>
-                    </ul>
-                </h:panelGroup>
-                <p><h:outputText value="Remembered: #{profileView.anonymousProfile.remembered}"/></p>
-                <p><h:outputText value="Client Name: #{profileView.anonymousProfile.clientName}"/></p>
-                <p><h:outputText value="Linked Id: #{profileView.anonymousProfile.linkedId}"/></p>
-                <h3>Common Profile Details</h3>
-                <p><h:outputText value="Email: #{profileView.anonymousProfile.email}"/></p>
-                <p><h:outputText value="First Name: #{profileView.anonymousProfile.firstName}"/></p>
-                <p><h:outputText value="Family Name: #{profileView.anonymousProfile.familyName}"/></p>
-                <p><h:outputText value="Display Name: #{profileView.anonymousProfile.displayName}"/></p>
-                <p><h:outputText value="Username: #{profileView.anonymousProfile.username}"/></p>
-                <p><h:outputText value="Gender: #{profileView.anonymousProfile.gender}"/></p>
-                <p><h:outputText value="Locale: #{profileView.anonymousProfile.locale}"/></p>
-                <p><h:outputText value="Picture URL: #{profileView.anonymousProfile.pictureUrl}"/></p>
-                <p><h:outputText value="Profile URL: #{profileView.anonymousProfile.profileUrl}"/></p>
-                <p><h:outputText value="Location: #{profileView.anonymousProfile.location}"/></p>
-            </h:panelGroup>
-
-            <h:panelGroup layout="block" rendered="#{not empty profileView.googleOidcProfile}">
-                <h2>Google OIDC Profile Details</h2>
-                <h3>User Profile Details</h3>
-                <p><h:outputText value="Id: #{profileView.googleOidcProfile.id}"/></p>
-                <p><h:outputText value="Type Id: #{profileView.googleOidcProfile.typedId}"/></p>
-                <p><h:outputText value="Attributes: #{profileView.googleOidcProfile.attributes.size()}"/> attributes</p>
-                <p><h:outputText value="Roles: #{profileView.googleOidcProfile.roles.size()}"/> roles</p>
-                <h:panelGroup layout="block" rendered="#{profileView.googleOidcProfile.roles.size() > 0}">
-                    <ul>
-                        <ui:repeat value="#{profileView.googleOidcProfile.roles.toArray()}" var="role">
-                            <li><h:outputText value="#{role}"/></li>
-                        </ui:repeat>
-                    </ul>
-                </h:panelGroup>
-                <p><h:outputText value="Permissions: #{profileView.googleOidcProfile.permissions.size()}"/> permissions</p>
-                <h:panelGroup layout="block" rendered="#{profileView.googleOidcProfile.permissions.size() > 0}">
-                    <ul>
-                        <ui:repeat value="#{profileView.googleOidcProfile.permissions.toArray()}" var="permission">
-                            <li><h:outputText value="#{permission}"/></li>
-                        </ui:repeat>
-                    </ul>
-                </h:panelGroup>
-                <p><h:outputText value="Remembered: #{profileView.googleOidcProfile.remembered}"/></p>
-                <p><h:outputText value="Client Name: #{profileView.googleOidcProfile.clientName}"/></p>
-                <p><h:outputText value="Linked Id: #{profileView.googleOidcProfile.linkedId}"/></p>
-
-                <h3>Common Profile Details</h3>
-                <p><h:outputText value="Email: #{profileView.googleOidcProfile.email}"/></p>
-                <p><h:outputText value="First Name: #{profileView.googleOidcProfile.firstName}"/></p>
-                <p><h:outputText value="Family Name: #{profileView.googleOidcProfile.familyName}"/></p>
-                <p><h:outputText value="Display Name: #{profileView.googleOidcProfile.displayName}"/></p>
-                <p><h:outputText value="Username: #{profileView.googleOidcProfile.username}"/></p>
-                <p><h:outputText value="Gender: #{profileView.googleOidcProfile.gender}"/></p>
-                <p><h:outputText value="Locale: #{profileView.googleOidcProfile.locale}"/></p>
-                <p><h:outputText value="Picture URL: #{profileView.googleOidcProfile.pictureUrl}"/></p>
-                <p><h:outputText value="Profile URL: #{profileView.googleOidcProfile.profileUrl}"/></p>
-                <p><h:outputText value="Location: #{profileView.googleOidcProfile.location}"/></p>
-
-                <h3>JWT Profile Details</h3>
-                <p><h:outputText value="Subject: #{profileView.googleOidcProfile.subject}"/></p>
-                <p><h:outputText value="Issuer: #{profileView.googleOidcProfile.issuer}"/></p>
-                <p><h:outputText value="Audience: #{profileView.googleOidcProfile.audience}"/></p>
-                <p><h:outputText value="Expiration Date: #{profileView.googleOidcProfile.expirationDate}"/></p>
-                <p><h:outputText value="Not Before Date: #{profileView.googleOidcProfile.notBefore}"/></p>
-                <p><h:outputText value="Issued At Date: #{profileView.googleOidcProfile.issuedAt}"/></p>
-
-                <h3>OIDC Profile Details</h3>
-                <p><h:outputText value="First Name: #{profileView.googleOidcProfile.firstName}"/></p>
-                <p><h:outputText value="Middle Name: #{profileView.googleOidcProfile.middleName}"/></p>
-                <p><h:outputText value="Display Name: #{profileView.googleOidcProfile.displayName}"/></p>
-                <p><h:outputText value="Nickname: #{profileView.googleOidcProfile.nickname}"/></p>
-                <p><h:outputText value="Username: #{profileView.googleOidcProfile.username}"/></p>
-                <p><h:outputText value="Picture URL: #{profileView.googleOidcProfile.pictureUrl}"/></p>
-                <p><h:outputText value="Profile URL: #{profileView.googleOidcProfile.profileUrl}"/></p>
-                <p><h:outputText value="Location: #{profileView.googleOidcProfile.location}"/></p>
-                <p><h:outputText value="Email Verified: #{profileView.googleOidcProfile.emailVerified}"/></p>
-                <p><h:outputText value="Phone Number: #{profileView.googleOidcProfile.phoneNumber}"/></p>
-                <p><h:outputText value="Phone Number Verified: #{profileView.googleOidcProfile.phoneNumberVerified}"/></p>
-                <p><h:outputText value="Updated At: #{profileView.googleOidcProfile.updatedAt}"/></p>
-                <p><h:outputText value="Auth Time: #{profileView.googleOidcProfile.authTime}"/></p>
-                <p><h:outputText value="Nonce: #{profileView.googleOidcProfile.nonce}"/></p>
-                <p><h:outputText value="Acr: #{profileView.googleOidcProfile.acr}"/></p>
-                <p><h:outputText value="Amr: #{profileView.googleOidcProfile.amr}"/></p>
-                <p><h:outputText value="Azp: #{profileView.googleOidcProfile.azp}"/></p>
-            </h:panelGroup>
+            <p>First profile:  <h:outputText value="#{profileView.profile}"/></p>
         </h:panelGroup>
     </div>
+
+    <h:panelGroup layout="block" rendered="#{not empty profileView.profile}">
+        <h2>Profile Details</h2>
+        <p><h:outputText value="Id: #{profileView.profile.id}"/></p>
+        <p><h:outputText value="Type Id: #{profileView.profile.typedId}"/></p>
+        <p><h:outputText value="Remembered: #{profileView.profile.remembered}"/></p>
+        <h3>Attributes (<h:outputText value="#{profileView.profile.attributes.size()}"/>)</h3>
+        <h:panelGroup layout="block" rendered="#{profileView.profile.attributes.size() > 0}">
+            <ul>
+                <ui:repeat value="#{profileView.profile.attributes.keySet().toArray()}" var="attributeName">
+                    <li><h:outputText value="#{attributeName}"/>: <h:outputText value="#{profileView.profile.attributes.get(attributeName)}"/> </li>
+                </ui:repeat>
+            </ul>
+        </h:panelGroup>
+        <h3>Roles (<h:outputText value="#{profileView.profile.roles.size()}"/>)</h3>
+        <h:panelGroup layout="block" rendered="#{profileView.profile.roles.size() > 0}">
+            <ul>
+                <ui:repeat value="#{profileView.profile.roles.toArray()}" var="role">
+                    <li><h:outputText value="#{role}"/></li>
+                </ui:repeat>
+            </ul>
+        </h:panelGroup>
+        <h3>Permissions (<h:outputText value="#{profileView.profile.permissions.size()}"/>)</h3>
+        <h:panelGroup layout="block" rendered="#{profileView.profile.permissions.size() > 0}">
+            <ul>
+                <ui:repeat value="#{profileView.profile.permissions.toArray()}" var="permission">
+                    <li><h:outputText value="#{permission}"/></li>
+                </ui:repeat>
+            </ul>
+        </h:panelGroup>
+    </h:panelGroup>
 </ui:composition>

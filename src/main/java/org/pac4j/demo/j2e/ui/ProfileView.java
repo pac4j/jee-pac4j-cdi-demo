@@ -2,9 +2,7 @@ package org.pac4j.demo.j2e.ui;
 
 
 import org.pac4j.core.context.WebContext;
-import org.pac4j.core.profile.AnonymousProfile;
 import org.pac4j.core.profile.ProfileManager;
-import org.pac4j.oidc.profile.google.GoogleOidcProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,44 +42,22 @@ public class ProfileView {
 
 
     /**
+     * Gets the first profile (if it exists) contained in the profile manager.
+     *
+     * @return a list of Pac4j profiles
+     */
+    public Object getProfile() {
+        return profileManager.get(true).orElse(null); // It's fine to return a null reference if there is no value present.
+    }
+
+
+    /**
      * Gets the profiles contained in the profile manager.
      *
      * @return a list of Pac4j profiles
      */
     public List getProfiles() {
         return profileManager.getAll(true);
-    }
-
-
-    /**
-     * Gets the Google OIDC profile if it exists.
-     *
-     * @return the Google OIDC profile
-     */
-    public GoogleOidcProfile getGoogleOidcProfile() {
-        GoogleOidcProfile googleOidcProfile = null;
-        for (Object profileObject : profileManager.getAll(true)) {
-            if (profileObject instanceof GoogleOidcProfile) {
-                googleOidcProfile = (GoogleOidcProfile)profileObject;
-            }
-        }
-        return googleOidcProfile;
-    }
-
-
-    /**
-     * Gets the Anonymous profile if it exists.
-     *
-     * @return the Anonymous profile
-     */
-    public AnonymousProfile getAnonymousProfile() {
-        AnonymousProfile anonymousProfile = null;
-        for (Object profileObject : profileManager.getAll(true)) {
-            if (profileObject instanceof AnonymousProfile) {
-                anonymousProfile = (AnonymousProfile)profileObject;
-            }
-        }
-        return anonymousProfile;
     }
 
 
