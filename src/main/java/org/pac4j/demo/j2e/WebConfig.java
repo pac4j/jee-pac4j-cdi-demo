@@ -1,7 +1,7 @@
 package org.pac4j.demo.j2e;
 
 import org.pac4j.core.config.Config;
-import org.pac4j.demo.j2e.filters.FilterHelper;
+import org.pac4j.j2e.util.FilterHelper;
 import org.pac4j.j2e.filter.CallbackFilter;
 import org.pac4j.j2e.filter.LogoutFilter;
 import org.pac4j.j2e.filter.SecurityFilter;

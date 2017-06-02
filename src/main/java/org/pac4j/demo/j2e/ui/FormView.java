@@ -62,7 +62,7 @@ public class FormView {
 
 
     public String authenticate() {
-        logger.debug("authenticating username/password: {}/{}", username, password);
+        logger.debug("authenticating username/password: {}/[PROTECTED]", username);
         String outcome = null;
         if (!username.equals(password)) {
             final String message = "Authentication failed.";

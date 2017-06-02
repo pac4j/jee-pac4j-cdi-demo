@@ -1,4 +1,4 @@
-package org.pac4j.demo.j2e.filters;
+package org.pac4j.j2e.util;
 
 import org.pac4j.core.exception.TechnicalException;
 
@@ -16,6 +16,7 @@ import static org.pac4j.core.util.CommonHelper.*;
  * Helper to define filter mappings.
  *
  * @author Jerome Leleu
+ * @since 3.0.0
  */
 public class FilterHelper {
 
