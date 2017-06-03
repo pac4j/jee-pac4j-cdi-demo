@@ -1,4 +1,4 @@
-package org.pac4j.j2e.util;
+package org.pac4j.demo.j2e.ui;
 
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.profile.ProfileManager;
@@ -17,7 +17,6 @@ import java.util.List;
  * JSF views such as facelets can reference this to view the contents of profiles.
  *
  * @author Phillip Ross
- * @since 3.0.0
  */
 @Named
 @RequestScoped
