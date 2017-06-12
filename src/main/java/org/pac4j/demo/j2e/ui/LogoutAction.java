@@ -2,7 +2,6 @@ package org.pac4j.demo.j2e.ui;
 
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.profile.ProfileManager;
-import org.pac4j.j2e.util.ProfileView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
