@@ -92,8 +92,8 @@ public class SecurityConfig {
         final IndirectBasicAuthClient indirectBasicAuthClient = new IndirectBasicAuthClient(new SimpleTestUsernamePasswordAuthenticator());
 
         // CAS
-        //final CasConfiguration configuration = new CasConfiguration("https://casserverpac4j.herokuapp.com/login");
-        final CasConfiguration configuration = new CasConfiguration("http://localhost:8888/cas/login");
+        final CasConfiguration configuration = new CasConfiguration("https://casserverpac4j.herokuapp.com/login");
+        //final CasConfiguration configuration = new CasConfiguration("http://localhost:8888/cas/login");
         final CasProxyReceptor casProxy = new CasProxyReceptor();
         configuration.setProxyReceptor(casProxy);
         final CasClient casClient = new CasClient(configuration);
