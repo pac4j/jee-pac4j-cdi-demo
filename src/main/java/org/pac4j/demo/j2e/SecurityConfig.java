@@ -87,6 +87,7 @@ public class SecurityConfig {
         final SAML2Client saml2Client = new SAML2Client(cfg);
 
         final FacebookClient facebookClient = new FacebookClient("145278422258960", "be21409ba8f39b5dae2a7de525484da8");
+        facebookClient.setScope("user_likes,user_birthday,email,user_hometown,user_location");
         final TwitterClient twitterClient = new TwitterClient("CoxUiYwQOSFDReZYdjigBA", "2kAzunH5Btc4gRSaMr7D7MkyoJ5u1VzbOOzE8rBofs");
         // HTTP
         final IndirectBasicAuthClient indirectBasicAuthClient = new IndirectBasicAuthClient(new SimpleTestUsernamePasswordAuthenticator());
@@ -95,7 +96,7 @@ public class SecurityConfig {
         final CasConfiguration configuration = new CasConfiguration("https://casserverpac4j.herokuapp.com/login");
         //final CasConfiguration configuration = new CasConfiguration("http://localhost:8888/cas/login");
         final CasProxyReceptor casProxy = new CasProxyReceptor();
-        configuration.setProxyReceptor(casProxy);
+        //configuration.setProxyReceptor(casProxy);
         final CasClient casClient = new CasClient(configuration);
 
         // REST authent with JWT for a token passed in the url as the token parameter
