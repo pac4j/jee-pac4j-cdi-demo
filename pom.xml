@@ -3,7 +3,7 @@
 
     <groupId>org.pac4j.demo</groupId>
     <artifactId>j2e-pac4j-cdi-demo</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
+    <version>4.1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>j2e-cdi-pac4j demo</name>
@@ -28,11 +28,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Plugin versioning -->
         <embedded-payara-maven-plugin.version>1.0.1</embedded-payara-maven-plugin.version>
-        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <payara-micro-maven-plugin.version>1.0.0</payara-micro-maven-plugin.version>
         <!-- Dependency versions -->
-        <dependency.pac4j.version>3.0.0</dependency.pac4j.version>
-        <dependency.j2e-pac4j.version>4.0.0</dependency.j2e-pac4j.version>
+        <dependency.pac4j.version>3.3.0</dependency.pac4j.version>
+        <dependency.j2e-pac4j.version>4.1.0-SNAPSHOT</dependency.j2e-pac4j.version>
         <dependency.javaee.version>7.0</dependency.javaee.version>
         <dependency.logback.version>1.2.3</dependency.logback.version>
         <dependency.payara-embedded-all.version>4.1.2.173.0.1</dependency.payara-embedded-all.version>
