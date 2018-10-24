@@ -32,7 +32,7 @@
         <payara-micro-maven-plugin.version>1.0.0</payara-micro-maven-plugin.version>
         <!-- Dependency versions -->
         <dependency.pac4j.version>3.3.0</dependency.pac4j.version>
-        <dependency.j2e-pac4j.version>4.1.0-SNAPSHOT</dependency.j2e-pac4j.version>
+        <dependency.j2e-pac4j.version>4.1.0</dependency.j2e-pac4j.version>
         <dependency.javaee.version>7.0</dependency.javaee.version>
         <dependency.logback.version>1.2.3</dependency.logback.version>
         <dependency.payara-embedded-all.version>4.1.2.173.0.1</dependency.payara-embedded-all.version>
