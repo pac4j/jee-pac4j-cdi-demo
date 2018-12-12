@@ -23,7 +23,7 @@ import org.pac4j.oauth.client.TwitterClient;
 import org.pac4j.oidc.client.GoogleOidcClient;
 import org.pac4j.oidc.config.OidcConfiguration;
 import org.pac4j.saml.client.SAML2Client;
-import org.pac4j.saml.client.SAML2ClientConfiguration;
+import org.pac4j.saml.config.SAML2Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -77,7 +77,7 @@ public class SecurityConfig {
         );
         jsfFormClient.setName("jsfFormClient");
 
-        final SAML2ClientConfiguration cfg = new SAML2ClientConfiguration("resource:samlKeystore.jks",
+        final SAML2Configuration cfg = new SAML2Configuration("resource:samlKeystore.jks",
                 "pac4j-demo-passwd",
                 "pac4j-demo-passwd",
                 "resource:testshib-providers.xml");

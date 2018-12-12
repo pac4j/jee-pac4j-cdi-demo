@@ -2,11 +2,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.pac4j.demo</groupId>
-    <artifactId>j2e-pac4j-cdi-demo</artifactId>
-    <version>4.1.0-SNAPSHOT</version>
+    <artifactId>jee-pac4j-cdi-demo</artifactId>
+    <version>5.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>j2e-cdi-pac4j demo</name>
+    <name>jee-cdi-pac4j demo</name>
 
     <repositories>
         <repository>
@@ -31,8 +31,8 @@
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <payara-micro-maven-plugin.version>1.0.0</payara-micro-maven-plugin.version>
         <!-- Dependency versions -->
-        <dependency.pac4j.version>3.3.0</dependency.pac4j.version>
-        <dependency.j2e-pac4j.version>4.1.0</dependency.j2e-pac4j.version>
+        <dependency.pac4j.version>4.0.0-SNAPSHOT</dependency.pac4j.version>
+        <dependency.jee-pac4j.version>5.0.0-SNAPSHOT</dependency.jee-pac4j.version>
         <dependency.javaee.version>7.0</dependency.javaee.version>
         <dependency.logback.version>1.2.3</dependency.logback.version>
         <dependency.payara-embedded-all.version>4.1.2.173.0.1</dependency.payara-embedded-all.version>
@@ -42,8 +42,8 @@
     <dependencies>
         <dependency>
             <groupId>org.pac4j</groupId>
-            <artifactId>j2e-pac4j</artifactId>
-            <version>${dependency.j2e-pac4j.version}</version>
+            <artifactId>jee-pac4j</artifactId>
+            <version>${dependency.jee-pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
