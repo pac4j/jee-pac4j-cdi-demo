@@ -1,4 +1,4 @@
-package org.pac4j.demo.j2e.ui;
+package org.pac4j.demo.jee.ui;
 
 import org.pac4j.core.client.IndirectClient;
 import org.pac4j.core.config.Config;

@@ -6,7 +6,7 @@
     <version>5.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>jee-cdi-pac4j demo</name>
+    <name>jee-pac4j CDI demo</name>
 
     <repositories>
         <repository>

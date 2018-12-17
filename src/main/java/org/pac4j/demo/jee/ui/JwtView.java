@@ -1,8 +1,8 @@
-package org.pac4j.demo.j2e.ui;
+package org.pac4j.demo.jee.ui;
 
 import org.pac4j.core.profile.CommonProfile;
 import org.pac4j.core.profile.ProfileManager;
-import org.pac4j.demo.j2e.SecurityConfig;
+import org.pac4j.demo.jee.SecurityConfig;
 import org.pac4j.jwt.config.signature.SecretSignatureConfiguration;
 import org.pac4j.jwt.profile.JwtGenerator;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package org.pac4j.demo.j2e.ui;
+package org.pac4j.demo.jee.ui;
 
 import org.pac4j.cas.profile.CasProxyProfile;
 import org.pac4j.core.profile.CommonProfile;

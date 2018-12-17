@@ -1,10 +1,10 @@
-package org.pac4j.demo.j2e;
+package org.pac4j.demo.jee;
 
 import org.pac4j.core.config.Config;
-import org.pac4j.j2e.util.FilterHelper;
-import org.pac4j.j2e.filter.CallbackFilter;
-import org.pac4j.j2e.filter.LogoutFilter;
-import org.pac4j.j2e.filter.SecurityFilter;
+import org.pac4j.jee.util.FilterHelper;
+import org.pac4j.jee.filter.CallbackFilter;
+import org.pac4j.jee.filter.LogoutFilter;
+import org.pac4j.jee.filter.SecurityFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
