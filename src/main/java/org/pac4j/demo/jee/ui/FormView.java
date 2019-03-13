@@ -55,7 +55,7 @@ public class FormView {
 
 
     public String getCallbackUrl() {
-        final String callbackUrl = ((IndirectClient) config.getClients().findClient("FormClient")).getCallbackUrl();
+        final String callbackUrl = ((IndirectClient) config.getClients().findClient("FormClient").get()).getCallbackUrl();
         logger.info("Computed callbackUrl: {}", callbackUrl);
         return callbackUrl;
     }

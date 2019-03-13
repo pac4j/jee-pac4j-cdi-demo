@@ -24,10 +24,10 @@ public class ForceLoginFilter extends AbstractConfigFilter {
             final FilterChain chain) {
 
         final JEEContext context = new JEEContext(request, response);
-        final Client client = ConfigSingleton.getConfig().getClients().findClient(request.getParameter(Pac4jConstants.DEFAULT_CLIENT_NAME_PARAMETER));
+        final Client client = ConfigSingleton.getConfig().getClients().findClient(request.getParameter(Pac4jConstants.DEFAULT_CLIENT_NAME_PARAMETER)).get();
         HttpAction action;
         try {
-            action = client.redirect(context);
+            action = (HttpAction) client.redirect(context).get();
         } catch (final HttpAction e) {
             action = e;
         }
