@@ -29,7 +29,7 @@
         <!-- Plugin versioning -->
         <embedded-payara-maven-plugin.version>1.0.5</embedded-payara-maven-plugin.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
-        <payara-micro-maven-plugin.version>1.0.0</payara-micro-maven-plugin.version>
+        <payara-micro-maven-plugin.version>1.0.6</payara-micro-maven-plugin.version>
         <!-- Dependency versions -->
         <dependency.pac4j.version>4.0.0-SNAPSHOT</dependency.pac4j.version>
         <dependency.jee-pac4j.version>5.0.0-SNAPSHOT</dependency.jee-pac4j.version>
