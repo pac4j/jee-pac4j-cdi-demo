@@ -7,7 +7,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.pac4j.core.config.ConfigSingleton;
+import org.pac4j.core.config.Config;
 import org.pac4j.jee.filter.AbstractConfigFilter;
 import org.pac4j.saml.client.SAML2Client;
 
@@ -26,7 +26,7 @@ public class Saml2MetadataFilter extends AbstractConfigFilter {
     protected void internalFilter(final HttpServletRequest request, final HttpServletResponse response,
             final FilterChain chain) throws IOException {
 
-        SAML2Client client = (SAML2Client) ConfigSingleton.getConfig().getClients().findClient("SAML2Client").get();
+        SAML2Client client = (SAML2Client) Config.INSTANCE.getClients().findClient("SAML2Client").get();
         client.init();
         response.getWriter().write(client.getServiceProviderMetadataResolver().getMetadata());
         response.getWriter().flush();

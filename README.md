@@ -12,7 +12,7 @@ Build the project and launch the web app via the [Payara Server](http://www.paya
     cd jee-pac4j-cdi-demo
     mvn clean package payara-micro:start
     
-OR
+OR using JDK 11 at least,
 
     cd jee-pac4j-cdi-demo
     mvn clean package embedded-payara:run

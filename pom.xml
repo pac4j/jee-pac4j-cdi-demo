@@ -188,10 +188,6 @@
                     <deployWar>true</deployWar>
                     <commandLineOptions>
                         <option>
-                            <key>--disablephonehome</key>
-                            <value>true</value>
-                        </option>
-                        <option>
                             <key>--port</key>
                             <value>${deploy.container.http.port}</value>
                         </option>

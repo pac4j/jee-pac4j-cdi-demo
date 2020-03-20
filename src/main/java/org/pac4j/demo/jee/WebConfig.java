@@ -40,7 +40,7 @@ public class WebConfig {
 
         final FilterHelper filterHelper = new FilterHelper(servletContext);
 
-        final SecurityFilter indexFilter = new SecurityFilter(config, "AnonymousClient", "securityHeaders");
+        final SecurityFilter indexFilter = new SecurityFilter(config, "AnonymousClient");
         filterHelper.addFilterMapping("indexFilter", indexFilter, "/");
 
         final SecurityFilter mustBeAnonFilter = new SecurityFilter(config, "AnonymousClient", "mustBeAnon");
@@ -51,51 +51,51 @@ public class WebConfig {
         callbackFilter.setMultiProfile(true);
         filterHelper.addFilterMapping("callbackFilter", callbackFilter, "/callback");
 
-        final SecurityFilter jwtParameterFilter = new SecurityFilter(config, "ParameterClient", "securityHeaders");
+        final SecurityFilter jwtParameterFilter = new SecurityFilter(config, "ParameterClient");
         filterHelper.addFilterMapping("jwtParameterFilter", jwtParameterFilter, "/rest-jwt/*");
 
-        final SecurityFilter directBasicAuthFilter = new SecurityFilter(config, "DirectBasicAuthClient,ParameterClient", "securityHeaders");
+        final SecurityFilter directBasicAuthFilter = new SecurityFilter(config, "DirectBasicAuthClient,ParameterClient");
         directBasicAuthFilter.setMultiProfile(true);
         filterHelper.addFilterMapping("directBasicAuthFilter", directBasicAuthFilter, "/dba/*");
 
-        final SecurityFilter oidcFilter = new SecurityFilter(config, "GoogleOidcClient", "securityHeaders");
+        final SecurityFilter oidcFilter = new SecurityFilter(config, "GoogleOidcClient");
         filterHelper.addFilterMapping("oidcFilter", oidcFilter, "/oidc/*");
 
         final ForceLoginFilter forceLoginFilter = new ForceLoginFilter();
         filterHelper.addFilterMapping("forceLoginFilter", forceLoginFilter, "/forceLogin");
 
-        final SecurityFilter saml2Filter = new SecurityFilter(config, "SAML2Client", "securityHeaders");
+        final SecurityFilter saml2Filter = new SecurityFilter(config, "SAML2Client");
         filterHelper.addFilterMapping("saml2Filter", saml2Filter, "/saml2/*");
 
         final Saml2MetadataFilter saml2MetadataFilter = new Saml2MetadataFilter();
         filterHelper.addFilterMapping("saml2MetadataFilter", saml2MetadataFilter, "/saml2-metadata");
 
-        final SecurityFilter facebookFilter = new SecurityFilter(config, "FacebookClient", "securityHeaders");
+        final SecurityFilter facebookFilter = new SecurityFilter(config, "FacebookClient");
         facebookFilter.setMatchers("excludedPath");
         filterHelper.addFilterMapping("facebookFilter", facebookFilter, "/facebook/*");
 
-        final SecurityFilter protectedFilter = new SecurityFilter(config, null, "securityHeaders");
+        final SecurityFilter protectedFilter = new SecurityFilter(config);
         filterHelper.addFilterMapping("protectedFilter", protectedFilter, "/protected/*");
 
-        final SecurityFilter facebookAdminFilter = new SecurityFilter(config, "FacebookClient", "admin,securityHeaders");
+        final SecurityFilter facebookAdminFilter = new SecurityFilter(config, "FacebookClient", "admin");
         filterHelper.addFilterMapping("facebookAdminFilter", facebookAdminFilter, "/facebookadmin/*");
 
-        final SecurityFilter facebookCustomFilter = new SecurityFilter(config, "FacebookClient", "custom,securityHeaders");
+        final SecurityFilter facebookCustomFilter = new SecurityFilter(config, "FacebookClient", "custom");
         filterHelper.addFilterMapping("facebookCustomFilter", facebookCustomFilter, "/facebookcustom/*");
 
-        final SecurityFilter twitterFilter = new SecurityFilter(config, "TwitterClient,FacebookClient", "securityHeaders");
+        final SecurityFilter twitterFilter = new SecurityFilter(config, "TwitterClient,FacebookClient");
         filterHelper.addFilterMapping("twitterFilter", twitterFilter, "/twitter/*");
 
-        final SecurityFilter formFilter = new SecurityFilter(config, "FormClient", "securityHeaders");
+        final SecurityFilter formFilter = new SecurityFilter(config, "FormClient");
         filterHelper.addFilterMapping("formFilter", formFilter, "/form/*");
 
-        final SecurityFilter jsfFormFilter = new SecurityFilter(config, "jsfFormClient", "securityHeaders");
+        final SecurityFilter jsfFormFilter = new SecurityFilter(config, "jsfFormClient");
         filterHelper.addFilterMapping("jsfFormFilter", jsfFormFilter, "/jsfform/*");
 
-        final SecurityFilter indirectBasicAuthFilter = new SecurityFilter(config, "IndirectBasicAuthClient", "securityHeaders");
+        final SecurityFilter indirectBasicAuthFilter = new SecurityFilter(config, "IndirectBasicAuthClient");
         filterHelper.addFilterMapping("indirectBasicAuthFilter", indirectBasicAuthFilter, "/basicauth/*");
 
-        final SecurityFilter casFilter = new SecurityFilter(config, "CasClient", "securityHeaders");
+        final SecurityFilter casFilter = new SecurityFilter(config, "CasClient");
         filterHelper.addFilterMapping("casFilter", casFilter, "/cas/*");
 
         final SecurityFilter mustBeAuthFilter = new SecurityFilter(config, "AnonymousClient", "mustBeAuth");
