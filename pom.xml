@@ -24,7 +24,7 @@
 
     <properties>
         <deploy.container.http.port>8080</deploy.container.http.port>
-        <java.min.version>1.8</java.min.version>
+        <java.min.version>11</java.min.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Plugin versioning -->
         <embedded-payara-maven-plugin.version>1.0.5</embedded-payara-maven-plugin.version>
@@ -137,8 +137,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${java.min.version}</source>
-                    <target>${java.min.version}</target>
+                    <release>${java.min.version}</release>
                 </configuration>
             </plugin>
             <plugin>
