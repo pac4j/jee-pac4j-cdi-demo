@@ -27,7 +27,7 @@
         <java.min.version>11</java.min.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Plugin versioning -->
-        <embedded-payara-maven-plugin.version>1.0.6</embedded-payara-maven-plugin.version>
+        <embedded-payara-maven-plugin.version>1.0.7</embedded-payara-maven-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <payara-micro-maven-plugin.version>1.2.0</payara-micro-maven-plugin.version>
         <!-- Dependency versions -->
