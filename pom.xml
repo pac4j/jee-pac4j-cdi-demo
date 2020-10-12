@@ -35,7 +35,7 @@
         <dependency.jee-pac4j.version>5.0.1-SNAPSHOT</dependency.jee-pac4j.version>
         <dependency.javaee.version>8.0.1</dependency.javaee.version>
         <dependency.logback.version>1.2.3</dependency.logback.version>
-        <dependency.payara-embedded-all.version>5.2020.4</dependency.payara-embedded-all.version>
+        <dependency.payara-embedded-all.version>5.2020.5</dependency.payara-embedded-all.version>
         <dependency.payara-micro.version>5.2020.4</dependency.payara-micro.version>
     </properties>
 
