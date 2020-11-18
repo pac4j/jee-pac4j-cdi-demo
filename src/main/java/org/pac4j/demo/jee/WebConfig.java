@@ -67,6 +67,7 @@ public class WebConfig {
         filterHelper.addFilterMapping("saml2Filter", saml2Filter, "/saml2/*");
 
         final Saml2MetadataFilter saml2MetadataFilter = new Saml2MetadataFilter();
+        saml2MetadataFilter.setClientName("SAML2Client");
         filterHelper.addFilterMapping("saml2MetadataFilter", saml2MetadataFilter, "/saml2-metadata");
 
         final SecurityFilter facebookFilter = new SecurityFilter(config, "FacebookClient");
