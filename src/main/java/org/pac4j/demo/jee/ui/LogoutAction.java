@@ -9,7 +9,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-
 /**
  * Managed bean to handle logout functionality.
  *
@@ -40,9 +39,7 @@ public class LogoutAction {
      */
     public String logout() {
         logger.debug("performing local logout via profile manager.");
-        profileManager.logout();
+        profileManager.removeProfiles();
         return "/?faces-redirect=true";
     }
-
-
 }

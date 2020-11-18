@@ -5,6 +5,7 @@ import org.pac4j.jee.util.FilterHelper;
 import org.pac4j.jee.filter.CallbackFilter;
 import org.pac4j.jee.filter.LogoutFilter;
 import org.pac4j.jee.filter.SecurityFilter;
+import org.pac4j.saml.metadata.Saml2MetadataFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,14 +49,12 @@ public class WebConfig {
 
         final CallbackFilter callbackFilter = new CallbackFilter(config, "/");
         callbackFilter.setRenewSession(true);
-        callbackFilter.setMultiProfile(true);
         filterHelper.addFilterMapping("callbackFilter", callbackFilter, "/callback");
 
         final SecurityFilter jwtParameterFilter = new SecurityFilter(config, "ParameterClient");
         filterHelper.addFilterMapping("jwtParameterFilter", jwtParameterFilter, "/rest-jwt/*");
 
         final SecurityFilter directBasicAuthFilter = new SecurityFilter(config, "DirectBasicAuthClient,ParameterClient");
-        directBasicAuthFilter.setMultiProfile(true);
         filterHelper.addFilterMapping("directBasicAuthFilter", directBasicAuthFilter, "/dba/*");
 
         final SecurityFilter oidcFilter = new SecurityFilter(config, "GoogleOidcClient");

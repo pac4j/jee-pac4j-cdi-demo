@@ -1,7 +1,7 @@
 package org.pac4j.demo.jee.ui;
 
-import org.pac4j.core.profile.CommonProfile;
 import org.pac4j.core.profile.ProfileManager;
+import org.pac4j.core.profile.UserProfile;
 import org.pac4j.demo.jee.SecurityConfig;
 import org.pac4j.jwt.config.signature.SecretSignatureConfiguration;
 import org.pac4j.jwt.profile.JwtGenerator;
@@ -28,7 +28,7 @@ public class JwtView {
     private ProfileManager profileManager;
 
     public String generate() {
-        final Optional<CommonProfile> profile = profileManager.get(true);
+        final Optional<UserProfile> profile = profileManager.getProfile();
         final JwtGenerator generator = new JwtGenerator(new SecretSignatureConfiguration(SecurityConfig.JWT_SALT));
         String token = "";
         if (profile.isPresent()) {

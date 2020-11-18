@@ -43,7 +43,7 @@ public class ProfileView {
      * @return a list of pac4j profiles
      */
     public Object getProfile() {
-        return profileManager.get(true).orElse(null); // It's fine to return a null reference if there is no value present.
+        return profileManager.getProfile().orElse(null); // It's fine to return a null reference if there is no value present.
     }
 
     /**
@@ -52,7 +52,7 @@ public class ProfileView {
      * @return a list of pac4j profiles
      */
     public List getProfiles() {
-        return profileManager.getAll(true);
+        return profileManager.getProfiles();
     }
 
     /** Simply prints some debugging information post-construction. */

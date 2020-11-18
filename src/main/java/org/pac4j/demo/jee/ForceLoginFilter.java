@@ -1,12 +1,12 @@
 package org.pac4j.demo.jee;
 
 import org.pac4j.core.client.Client;
+import org.pac4j.core.config.AbstractConfigFilter;
 import org.pac4j.core.config.Config;
 import org.pac4j.core.context.JEEContext;
 import org.pac4j.core.exception.http.HttpAction;
 import org.pac4j.core.http.adapter.JEEHttpActionAdapter;
 import org.pac4j.core.util.Pac4jConstants;
-import org.pac4j.jee.filter.AbstractConfigFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -27,7 +27,7 @@ public class ForceLoginFilter extends AbstractConfigFilter {
         final Client client = Config.INSTANCE.getClients().findClient(request.getParameter(Pac4jConstants.DEFAULT_CLIENT_NAME_PARAMETER)).get();
         HttpAction action;
         try {
-            action = (HttpAction) client.getRedirectionAction(context).get();
+            action = client.getRedirectionAction(context).get();
         } catch (final HttpAction e) {
             action = e;
         }

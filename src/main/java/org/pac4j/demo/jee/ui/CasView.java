@@ -1,8 +1,8 @@
 package org.pac4j.demo.jee.ui;
 
 import org.pac4j.cas.profile.CasProxyProfile;
-import org.pac4j.core.profile.CommonProfile;
 import org.pac4j.core.profile.ProfileManager;
+import org.pac4j.core.profile.UserProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,10 +26,10 @@ public class CasView {
     private ProfileManager profileManager;
 
     public String getProxyTicket() {
-        final Optional<CommonProfile> optProfile = profileManager.get(true);
+        final Optional<UserProfile> optProfile = profileManager.getProfile();
         String pt = null;
         if (optProfile.isPresent()) {
-            CommonProfile profile = optProfile.get();
+            UserProfile profile = optProfile.get();
             if (profile instanceof CasProxyProfile) {
                 final CasProxyProfile casProxyProfile = (CasProxyProfile) profile;
                 pt = casProxyProfile.getProxyTicketFor("http://test");
