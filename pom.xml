@@ -36,7 +36,7 @@
         <dependency.javaee.version>8.0.1</dependency.javaee.version>
         <dependency.logback.version>1.2.3</dependency.logback.version>
         <dependency.payara-micro.version>5.2020.6</dependency.payara-micro.version>
-        <dependency.payara-embedded-all.version>5.2020.6</dependency.payara-embedded-all.version>
+        <dependency.payara-embedded-all.version>5.2020.7</dependency.payara-embedded-all.version>
     </properties>
 
     <dependencies>
