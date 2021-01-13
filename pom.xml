@@ -57,11 +57,6 @@
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
-            <artifactId>pac4j-openid</artifactId>
-            <version>${dependency.pac4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.pac4j</groupId>
             <artifactId>pac4j-cas</artifactId>
             <version>${dependency.pac4j.version}</version>
         </dependency>

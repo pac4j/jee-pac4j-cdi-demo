@@ -65,7 +65,7 @@ public class SecurityConfig {
         //oidcClient.setPreferredJwsAlgorithm(JWSAlgorithm.RS256);
         oidcConfiguration.addCustomParam("prompt", "consent");
         final GoogleOidcClient oidcClient = new GoogleOidcClient(oidcConfiguration);
-        oidcClient.setAuthorizationGenerator((ctx, profile) -> { profile.addRole("ROLE_ADMIN"); return Optional.of(profile); });
+        oidcClient.setAuthorizationGenerator((ctx, session, profile) -> { profile.addRole("ROLE_ADMIN"); return Optional.of(profile); });
 
         final FormClient formClient = new FormClient(
                 "http://localhost:8080/loginForm.action",
