@@ -5,7 +5,7 @@ import org.pac4j.jee.util.FilterHelper;
 import org.pac4j.jee.filter.CallbackFilter;
 import org.pac4j.jee.filter.LogoutFilter;
 import org.pac4j.jee.filter.SecurityFilter;
-import org.pac4j.saml.metadata.Saml2MetadataFilter;
+import org.pac4j.jee.saml.metadata.Saml2MetadataFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
