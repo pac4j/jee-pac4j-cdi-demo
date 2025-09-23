@@ -27,9 +27,9 @@ import org.pac4j.saml.config.SAML2Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
-import javax.enterprise.inject.Produces;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.Dependent;
+import jakarta.enterprise.inject.Produces;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,8 @@ public class SecurityConfig {
      */
     @Produces @ApplicationScoped
     private Config buildConfiguration() {
-        logger.debug("building Security configuration...");
+        System.out.println("*** SECURITYCONFIG: building Security configuration... ***");
+        logger.info("building Security configuration...");
 
         // Google OIDC configuration/client
         final OidcConfiguration oidcConfiguration = new OidcConfiguration();

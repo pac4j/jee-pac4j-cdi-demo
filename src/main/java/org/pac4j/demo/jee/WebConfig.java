@@ -9,12 +9,12 @@ import org.pac4j.jee.saml.metadata.Saml2MetadataFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Initialized;
-import javax.enterprise.event.Observes;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.servlet.ServletContext;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.Initialized;
+import jakarta.enterprise.event.Observes;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.servlet.ServletContext;
 
 /**
  * Pac4J configuration used for demonstration and experimentation.
@@ -37,7 +37,8 @@ public class WebConfig {
      * @param servletContext the servlet context in which the configuration will apply
      */
     public void build(@Observes @Initialized(ApplicationScoped.class) ServletContext servletContext) {
-        logger.debug("building Web configuration...");
+        System.out.println("*** WEBCONFIG: building Web configuration... ***");
+        logger.info("building Web configuration...");
 
         final FilterHelper filterHelper = new FilterHelper(servletContext);
 

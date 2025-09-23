@@ -35,20 +35,15 @@
         <dependency.jee-pac4j.version>7.1.0</dependency.jee-pac4j.version>
         <dependency.javaee.version>8.0.1</dependency.javaee.version>
         <dependency.logback.version>1.5.18</dependency.logback.version>
-        <dependency.payara-micro.version>6.2022.1</dependency.payara-micro.version>
+        <dependency.payara-micro.version>6.2024.10</dependency.payara-micro.version>
         <dependency.payara-embedded-all.version>6.2024.10</dependency.payara-embedded-all.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.pac4j</groupId>
-            <artifactId>javaee-pac4j</artifactId>
+            <artifactId>jakartaee-pac4j</artifactId>
             <version>${dependency.jee-pac4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.pac4j</groupId>
-            <artifactId>pac4j-javaee</artifactId>
-            <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
@@ -117,9 +112,9 @@
         </dependency>
 
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>${dependency.javaee.version}</version>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>10.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -127,6 +122,12 @@
             <artifactId>payara-micro</artifactId>
             <version>${dependency.payara-micro.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <!-- JSF Implementation for Payara Micro -->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.faces</artifactId>
+            <version>4.0.1</version>
         </dependency>
     </dependencies>
     <build>
@@ -189,6 +190,10 @@
                         <option>
                             <key>--port</key>
                             <value>${deploy.container.http.port}</value>
+                        </option>
+                        <option>
+                            <key>--nocluster</key>
+                            <value></value>
                         </option>
                     </commandLineOptions>
                 </configuration>
