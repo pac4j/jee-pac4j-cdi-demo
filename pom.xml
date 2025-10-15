@@ -35,7 +35,7 @@
         <dependency.jee-pac4j.version>7.1.0</dependency.jee-pac4j.version>
         <dependency.javaee.version>8.0.1</dependency.javaee.version>
         <dependency.logback.version>1.5.19</dependency.logback.version>
-        <dependency.payara-micro.version>6.2025.9</dependency.payara-micro.version>
+        <dependency.payara-micro.version>6.2025.10</dependency.payara-micro.version>
         <dependency.payara-embedded-all.version>6.2025.10</dependency.payara-embedded-all.version>
     </properties>
 
