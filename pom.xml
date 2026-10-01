@@ -3,16 +3,16 @@
 
     <groupId>org.pac4j.demo</groupId>
     <artifactId>jee-pac4j-cdi-demo</artifactId>
-    <version>7.0.0-SNAPSHOT</version>
+    <version>7.1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>jee-pac4j CDI demo</name>
 
     <repositories>
         <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>central-portal-snapshots</id>
+            <name>Central Portal Snapshots</name>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -32,8 +32,7 @@
         <payara-micro-maven-plugin.version>2.5.1</payara-micro-maven-plugin.version>
         <!-- Dependency versions -->
         <dependency.pac4j.version>5.8.0</dependency.pac4j.version>
-        <dependency.jee-pac4j.version>7.1.0</dependency.jee-pac4j.version>
-        <dependency.javaee.version>8.0.1</dependency.javaee.version>
+        <dependency.jakartaee-pac4j.version>7.1.0</dependency.jakartaee-pac4j.version>
         <dependency.logback.version>1.6.4</dependency.logback.version>
         <dependency.payara-micro.version>7.2026.9</dependency.payara-micro.version>
         <dependency.payara-embedded-all.version>7.2026.9</dependency.payara-embedded-all.version>
@@ -43,7 +42,7 @@
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>jakartaee-pac4j</artifactId>
-            <version>${dependency.jee-pac4j.version}</version>
+            <version>${dependency.jakartaee-pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
