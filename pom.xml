@@ -33,7 +33,7 @@
         <!-- Dependency versions -->
         <dependency.pac4j.version>5.8.0</dependency.pac4j.version>
         <dependency.jakartaee-pac4j.version>7.1.0</dependency.jakartaee-pac4j.version>
-        <dependency.logback.version>1.6.4</dependency.logback.version>
+        <dependency.logback.version>1.6.5</dependency.logback.version>
         <dependency.payara-micro.version>7.2026.9</dependency.payara-micro.version>
         <dependency.payara-embedded-all.version>7.2026.9</dependency.payara-embedded-all.version>
     </properties>
