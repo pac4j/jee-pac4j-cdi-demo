@@ -3,7 +3,7 @@
 
     <groupId>org.pac4j.demo</groupId>
     <artifactId>jee-pac4j-cdi-demo</artifactId>
-    <version>7.1.0-SNAPSHOT</version>
+    <version>8.0.4-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>jee-pac4j CDI demo</name>
@@ -24,15 +24,15 @@
 
     <properties>
         <deploy.container.http.port>8080</deploy.container.http.port>
-        <java.min.version>11</java.min.version>
+        <java.min.version>21</java.min.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Plugin versioning -->
         <embedded-payara-maven-plugin.version>1.0.14</embedded-payara-maven-plugin.version>
         <maven-compiler-plugin.version>3.16.0</maven-compiler-plugin.version>
         <payara-micro-maven-plugin.version>2.5.1</payara-micro-maven-plugin.version>
         <!-- Dependency versions -->
-        <dependency.pac4j.version>5.8.0</dependency.pac4j.version>
-        <dependency.jakartaee-pac4j.version>7.1.0</dependency.jakartaee-pac4j.version>
+        <dependency.pac4j.version>6.5.9</dependency.pac4j.version>
+        <dependency.jakartaee-pac4j.version>8.0.4</dependency.jakartaee-pac4j.version>
         <dependency.logback.version>1.6.4</dependency.logback.version>
         <dependency.payara-micro.version>7.2026.9</dependency.payara-micro.version>
         <dependency.payara-embedded-all.version>7.2026.9</dependency.payara-embedded-all.version>
@@ -57,11 +57,6 @@
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-saml</artifactId>
-            <version>${dependency.pac4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.pac4j</groupId>
-            <artifactId>pac4j-gae</artifactId>
             <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
@@ -100,11 +95,6 @@
             <version>${dependency.pac4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.pac4j</groupId>
-            <artifactId>pac4j-couch</artifactId>
-            <version>${dependency.pac4j.version}</version>
-        </dependency>
-        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${dependency.logback.version}</version>
@@ -121,12 +111,6 @@
             <artifactId>payara-micro</artifactId>
             <version>${dependency.payara-micro.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <!-- JSF Implementation for Payara Micro -->
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>jakarta.faces</artifactId>
-            <version>4.1.17</version>
         </dependency>
     </dependencies>
     <build>

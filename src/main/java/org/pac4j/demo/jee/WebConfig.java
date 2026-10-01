@@ -62,6 +62,7 @@ public class WebConfig {
         filterHelper.addFilterMapping("oidcFilter", oidcFilter, "/oidc/*");
 
         final ForceLoginFilter forceLoginFilter = new ForceLoginFilter();
+        forceLoginFilter.setConfig(config);
         filterHelper.addFilterMapping("forceLoginFilter", forceLoginFilter, "/forceLogin");
 
         final SecurityFilter saml2Filter = new SecurityFilter(config, "SAML2Client");
